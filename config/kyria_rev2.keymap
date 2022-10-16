@@ -182,30 +182,30 @@
 		};
 
 
-		/*
+		/**
 		*   Features (mostly ordered by importance):
 		*		ENG: DOT, COMMA, QMARK, EXCL
 		*			SEMI, COLON, DQT, SQT
 		* 		C: SEMI, EQUAL, LPAR, RPAR, LBRC, RBRC, UNDER,
-		*			EXCL, SQT, DQT, PRCNT, MULT, PLUS, MINUS, LT, GT, LBKT, RBKT, AMPS, PIPE, HASH,
+		*			EXCL, SQT, DQT, PRCNT, STAR, PLUS, MINUS, LT, GT, LBKT, RBKT, AMPS, PIPE, HASH,
 		* 			QMARK, 
 		*		bash: SQT, DQT, TILDE, FSLH, DLLR, AMPS, PIPE
-		*			LBRC, RBRC, GT, MULT,
+		*			LBRC, RBRC, GT, STAR,
 		*        
 		*		Low usage: AT, GRAVE, BSLH, CARET
 		*/
 		sym_layer {
 			bindings = <
 	XXX	&kp GT		&kp N1	&kp N2	&kp N3	&kp PLUS                &kp PRCNT  	&kp LBKT 	&kp RBKT 	&kp AMPS    &kp AT		XXX
-	XXX	&kp EQUAL	&kp N4	&kp N5	&kp N6	&kp MULT				&kp COLON	&kp LPAR 	&kp RPAR    &kp UNDER  	&caps_word	XXX
+	XXX	&kp EQUAL	&kp N4	&kp N5	&kp N6	&kp STAR				&kp COLON	&kp LPAR 	&kp RPAR    &kp UNDER  	&caps_word	XXX
 	XXX	&kp LT		&kp N7	&kp N8	&kp N9	&kp MINUS	THUMB_NONE	&kp DLLR   	&kp LBRC 	&kp RBRC	&kp PIPE   	&kp HASH	XXX
-	        &trans	&trans	&kp SQT	&kb N0  &kp DQT                 &kp GRAVE  	XXX 		&kp CARET	XXX			XXX
+	    &trans		&trans	&kp SQT	&kb N0  &kp DQT                 &kp GRAVE  	XXX 		&kp CARET	XXX			XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN &inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
 		};
 
-		/*
+		/**
 		*   Features:
 		*		Arrows (L hand): LEFT, RIGHT, UP, DOWN
 		*		Mouse (L hand):  LEFT, RIGHT, MIDDLE, BACK, FORWARD
@@ -214,14 +214,14 @@
 		*		Media: 	C_VOL_UP, C_VOL_DN, C_MUTE, 
 		*				video (ctrl alt v), screenshare (ctrl alt s), leave (ctrl alt e)
 		*		BT: BT_NEXT, BT_CLR
-		*		*/
+		*/
 
 		nav_layer {
 			bindings = <
-	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            		&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12				XXX			XXX
-	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)					&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15  			&kp PRSCRN	XXX
-	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)	THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18				&kp LC(S)	XXX
-		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE						SW_APP_0		SW_APP_1	SW_APP_2	&lot BT_CLR BT_NEXT	XXX
+	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            			&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12				XXX			XXX
+	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)						&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15  			&kp PRSCRN	XXX
+	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18				&kp LC(S)	XXX
+		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE							SW_APP_0		SW_APP_1	SW_APP_2	&lot BT_CLR BT_NEXT	XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN &inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
