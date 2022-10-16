@@ -8,8 +8,8 @@
 #include <dt-bindings/zmk/keys.h>
 
 #define DEFAULT		0
-#define NAV			1
-#define SYM			2
+#define SYM			1
+#define NAV			2
 #define QWERTY		3
 
 #define THUMB_NONE 	&none &none &none &none
