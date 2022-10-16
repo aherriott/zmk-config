@@ -18,13 +18,13 @@
 #define QUICK_TAP_MS_DEFAULT 125
 
 // Unimplemented features
-#define L_MOUSE XXX
-#define R_MOUSE XXX
-#define M_MOUSE XXX
-#define SW_APP_0 XXX
-#define SW_APP_1 XXX
-#define SW_APP_2 XXX
-#define SW_APP_3 XXX
+#define L_MOUSE &none
+#define R_MOUSE &none
+#define M_MOUSE &none
+#define SW_APP_0 &none
+#define SW_APP_1 &none
+#define SW_APP_2 &none
+#define SW_APP_3 &none
 
 &lt {
 	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
