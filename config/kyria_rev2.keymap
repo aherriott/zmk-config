@@ -18,12 +18,13 @@
 #define QUICK_TAP_MS_DEFAULT 125
 
 // Unimplemented features
-#define L_MOUSE &none
-#define R_MOUSE &none
-#define M_MOUSE &none
-#define SW_APP_0 &none
-#define SW_APP_1 &none
-#define SW_APP_2 &none
+#define L_MOUSE XXX
+#define R_MOUSE XXX
+#define M_MOUSE XXX
+#define SW_APP_0 XXX
+#define SW_APP_1 XXX
+#define SW_APP_2 XXX
+#define SW_APP_3 XXX
 
 &lt {
 	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
@@ -53,14 +54,6 @@
 			tapping-term-ms = <200>;
 			quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
 			bindings = <&tog>, <&kp>;
-		};
-		hbt: hold-bt {
-			compatible = "zmk,behavior-hold-tap";
-			label = "HOLD_BT";
-			#binding-cells = <2>;
-			flavor = "tap-preferred";
-			tapping-term-ms = <1000>;
-			bindings = <&bt>, <&bt>;
 		};
 		rsb: reset-bootloader {
 			compatible = "zmk,behavior-tap-dance";
@@ -164,6 +157,34 @@
             bindings = <&kp F9>, <&kp F18>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
     	};
+		app_bt_0: app_bt_0-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "app_bt_0_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <SW_APP_0>, <&bt BT_SEL 0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		app_bt_1: app_bt_1-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "app_bt_1_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <SW_APP_1>, <&bt BT_SEL 1>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		app_bt_2: app_bt_2-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "app_bt_2_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <SW_APP_2>, <&bt BT_SEL 2>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		app_bt_3: app_bt_3-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "app_bt_3_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <SW_APP_3>, <&bt BT_SEL 3>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
 	};
 
 	keymap {
@@ -193,6 +214,7 @@
 		*        
 		*		Low usage: AT, GRAVE, BSLH, CARET
 		*/
+	
 		sym_layer {
 			bindings = <
 	XXX	&kp GT		&kp N1	&kp N2	&kp N3	&kp PLUS                &kp PRCNT  	&kp LBKT 	&kp RBKT 	&kp AMPS    &kp AT		XXX
@@ -219,10 +241,10 @@
 
 		nav_layer {
 			bindings = <
-	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            			&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12				XXX			XXX
-	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)						&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15  			&kp PSCRN	XXX
-	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18				&kp LC(S)	XXX
-		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE							SW_APP_0		SW_APP_1	SW_APP_2	XXX					XXX
+	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            			&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12		XXX			XXX
+	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)						&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15 	&kp PSCRN	XXX
+	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18		&kp LC(S)	XXX
+		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE							&app_bt_0		&app_bt_1	&app_bt_2	&app_bt_3	&bt BT_CLR
 			>;
 
 			sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN &inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
