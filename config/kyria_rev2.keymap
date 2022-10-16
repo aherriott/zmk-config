@@ -59,7 +59,7 @@
 			compatible = "zmk,behavior-tap-dance";
             label = "RESET_BOOTLOADER";
             #binding-cells = <0>;
-            tapping-term-ms = <400>;
+            tapping-term-ms = <1000>;
             bindings = <&reset>, <&bootloader>, <&tog 3>;
 		};
 
@@ -167,7 +167,7 @@
 	XXX	&kp Q      	&kp W       &kp F        	&kp P       	&kp B                		&kp J		&kp L       	&kp U           &kp Y      		&semi_tilde	XXX
 	XXX	&hrm LGUI A	&hrm LALT R	&hrm LSHIFT S	&hrm LCTRL T	&kp G                       &kp M       &hrm RCTRL N	&hrm RSHIFT E  	&hrm RALT I		&hrm RGUI O	XXX
 	XXX	&kp Z      	&kp X       &kp C        	&kp D       	&kp V 		THUMB_NONE    	&kp K       &kp H      		&comma_qmark	&dot_excl		&fslh_bslh 	XXX
-		&rsb       	&tog NAV 	&kp DEL    		&kp BSPC		&kp RET              		&kp TAB		&lt SYM SPACE	&kp ESC        	&key_repeat		&rsb
+		&rsb       	&tog NAV 	&kp DEL    		&lt NAV BSPC	&kp RET              		&kp TAB		&lt SYM SPACE	&kp ESC        	&key_repeat		&rsb
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -190,8 +190,8 @@
 		sym_layer {
 			bindings = <
 	XXX	&kp GT		&kp N1	&kp N2	&kp N3	&kp PLUS                &kp PRCNT  	&kp LBKT 	&kp RBKT 	&kp AMPS    &kp AT		XXX
-	XXX	&kp EQUAL	&kp N4	&kp N5	&kp N6	&kp STAR				&kp COLON	&kp LPAR 	&kp RPAR    &kp UNDER  	&caps_word	XXX
-	XXX	&kp LT		&kp N7	&kp N8	&kp N9	&kp MINUS	THUMB_NONE	&kp DLLR   	&kp LBRC 	&kp RBRC	&kp PIPE   	&kp HASH	XXX
+	XXX	&kp EQUAL	&kp N4	&kp N5	&kp N6	&kp MINUS				&kp COLON	&kp LPAR 	&kp RPAR    &kp UNDER  	&caps_word	XXX
+	XXX	&kp LT		&kp N7	&kp N8	&kp N9	&kp STAR	THUMB_NONE	&kp DLLR   	&kp LBRC 	&kp RBRC	&kp PIPE   	&kp HASH	XXX
 	    &trans		&trans	&kp SQT	&kp N0  &kp DQT                 &kp GRAVE  	XXX 		&kp CARET	XXX			XXX
 			>;
 
@@ -213,10 +213,10 @@
 
 		nav_layer {
 			bindings = <
-	XXX	&kp LA(RIGHT)	&kp PG_DN		&kp UP				&kp PG_UP			&key_repeat            			&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12		XXX			XXX
-	XXX	&kp LA(LEFT)	&kp LEFT		&kp DOWN			&kp RIGHT			&kp LG(TAB)						&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15 	&kp PSCRN	XXX
-	XXX	&kp LC(Z)		&hrm LALT LC(X)	&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18		&kp LC(S)	XXX
-		XXX				&tog NAV		M_MOUSE				L_MOUSE				R_MOUSE							SW_APP_0		SW_APP_1	SW_APP_2	XXX			XXX
+	XXX	&kp LA(RIGHT)	&kp PG_DN		&kp UP				&kp PG_UP			&key_repeat            		&kp C_VOL_UP		&f1_f10 			&f2_f11					&f3_f12		XXX			XXX
+	XXX	&kp LA(LEFT)	&kp LEFT		&kp DOWN			&kp RIGHT			&kp LG(TAB)					&kp C_MUTE 			&f4_f13 			&f5_f14					&f6_f15 	&kp PSCRN	XXX
+	XXX	&kp LC(Z)		&hrm LALT LC(X)	&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 	&kp C_VOL_DN		&f7_f16				&f8_f17					&f9_f18		&kp LC(S)	XXX
+		XXX				&tog NAV		M_MOUSE				L_MOUSE				R_MOUSE						&mt RSHIFT SW_APP_0	&mt RCTRL SW_APP_1	&mt RC(RSHIFT) SW_APP_3	XXX			XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
