@@ -120,14 +120,14 @@
             compatible = "zmk,behavior-mod-morph";
             label = "f3_f12_CUSTOM_SHIFT";
             #binding-cells = <0>;
-            bindings = <&kp F3>, <&kp >;
+            bindings = <&kp F3>, <&kp F12>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
     	};
 		f4_f13: f4_f13-custom-shift {
             compatible = "zmk,behavior-mod-morph";
             label = "mm_name_CUSTOM_SHIFT";
             #binding-cells = <0>;
-            bindings = <&kp F4>, <&kp F12>;
+            bindings = <&kp F4>, <&kp F13>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
     	};
 		f5_f14: f5_f14-custom-shift {
