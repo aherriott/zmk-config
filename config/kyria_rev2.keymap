@@ -78,7 +78,7 @@
             label = "RESET_BOOTLOADER";
             #binding-cells = <0>;
             tapping-term-ms = <400>;
-            bindings = <&reset>, <&bootloader>, <&out OUT_TOG>, <&tog 3>;
+            bindings = <&reset>, <&bootloader>, <&tog 3>;
 		};
 
 		/**
