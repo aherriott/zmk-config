@@ -17,16 +17,6 @@
 
 #define QUICK_TAP_MS_DEFAULT 125
 
-#define CUSTOM_SHIFT(mm_name, key_1, key_2)	{ 		\
-	mm_name: mm_name-custom-shift {					\
-            compatible = "zmk,behavior-mod-morph";	\
-            label = "mm_name_CUSTOM_SHIFT";			\
-            #binding-cells = <0>;					\
-            bindings = <&kp key_1>, <&kp key_2>;	\
-            mods = <(MOD_LSFT|MOD_RSFT)>;			\
-    }												\
-}
-
 // Unimplemented features
 #define L_MOUSE XXX
 #define R_MOUSE XXX
@@ -84,19 +74,97 @@
 		/**
 		 * Custom shifted keys
 		 */
-		CUSTOM_SHIFT(comma_qmark, COMMA, QMARK);
-		CUSTOM_SHIFT(semi_tilde, SEMI, TILDE);
-		CUSTOM_SHIFT(dot_excl, DOT, EXCL);
-		CUSTOM_SHIFT(fslh_bslh, FSLH, BSLH);
-		CUSTOM_SHIFT(f1_f10, F1, F10);
-		CUSTOM_SHIFT(f2_f11, F2, F11);
-		CUSTOM_SHIFT(f3_f12, F3, F12);
-		CUSTOM_SHIFT(f4_f13, F4, F13);
-		CUSTOM_SHIFT(f5_f14, F5, F14);
-		CUSTOM_SHIFT(f6_f15, F6, F15);
-		CUSTOM_SHIFT(f7_f16, F7, F16);
-		CUSTOM_SHIFT(f8_f17, F8, F17);
-		CUSTOM_SHIFT(f9_f18, F9, F18);
+		comma_qmark: comma_qmark-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "comma_qmark_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp QMARK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		semi_tilde: semi_tilde-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "semi_tilde_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp SEMI>, <&kp TILDE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		dot_excl: dot_excl-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "dot_excl_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp EXCL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		fslh_bslh: fslh_bslh-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "fslh_bslh_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH>, <&kp BSLH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f1_f10: f1_f10-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f1_f10_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F1>, <&kp F10>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+   	 	};
+		f2_f11: f2_f11-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f2_f11_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F2>, <&kp F11>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f3_f12: f3_f12-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f3_f12_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F3>, <&kp >;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f4_f13: f4_f13-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "mm_name_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F4>, <&kp F12>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f5_f14: f5_f14-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f5_f14_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F5>, <&kp F14>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f6_f15: f6_f15-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f6_f15_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F6>, <&kp F15>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f7_f16: f7_f16-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f7_f16_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F7>, <&kp F16>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f8_f17: f8_f17-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f8_f17_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F8>, <&kp F17>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
+		f9_f18: f9_f18-custom-shift {
+            compatible = "zmk,behavior-mod-morph";
+            label = "f9_f18_CUSTOM_SHIFT";
+            #binding-cells = <0>;
+            bindings = <&kp F9>, <&kp F18>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+    	};
 	};
 
 	keymap {
@@ -142,7 +210,7 @@
 		*		Arrows (L hand): LEFT, RIGHT, UP, DOWN
 		*		Mouse (L hand):  LEFT, RIGHT, MIDDLE, BACK, FORWARD
 		*		Mods (L hand): LCTRL, LSHIFT, LALT
-		*		Actions: Ctrl c, ctrl x, ctrl v, PRSCRN, Ctrl Z, Ctrl Y
+		*		Actions: Ctrl c, ctrl x, ctrl v, PRSCRN, Ctrl Z, Ctrl Y, ctrl S
 		*		Media: 	C_VOL_UP, C_VOL_DN, C_MUTE, 
 		*				video (ctrl alt v), screenshare (ctrl alt s), leave (ctrl alt e)
 		*		BT: BT_NEXT, BT_CLR
@@ -152,7 +220,7 @@
 			bindings = <
 	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            		&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12				XXX			XXX
 	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)					&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15  			&kp PRSCRN	XXX
-	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)	THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18				XXX			XXX
+	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)	THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18				&kp LC(S)	XXX
 		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE						SW_APP_0		SW_APP_1	SW_APP_2	&lot BT_CLR BT_NEXT	XXX
 			>;
 
