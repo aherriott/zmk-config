@@ -37,11 +37,11 @@
 #define SW_APP_3 XXX
 
 &lt {
-	quick-tap-ms = QUICK_TAP_MS_DEFAULT;
+	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
 };
 
 &mt {
-	quick-tap-ms = QUICK_TAP_MS_DEFAULT;
+	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
 };
 
 / {
