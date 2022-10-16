@@ -18,13 +18,13 @@
 #define QUICK_TAP_MS_DEFAULT 125
 
 // Unimplemented features
-#define L_MOUSE &none
-#define R_MOUSE &none
-#define M_MOUSE &none
-#define SW_APP_0 &none
-#define SW_APP_1 &none
-#define SW_APP_2 &none
-#define SW_APP_3 &none
+#define L_MOUSE XXX
+#define R_MOUSE XXX
+#define M_MOUSE XXX
+#define SW_APP_0 XXX
+#define SW_APP_1 XXX
+#define SW_APP_2 XXX
+#define SW_APP_3 XXX
 
 &lt {
 	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
@@ -216,7 +216,7 @@
 	XXX	&kp LA(RIGHT)	&kp K_SCROLL_DOWN	&kp UP				&kp K_SCROLL_UP		&key_repeat            			&kp C_VOL_UP	&f1_f10 	&f2_f11		&f3_f12		XXX			XXX
 	XXX	&kp LA(LEFT)	&kp LEFT			&kp DOWN			&kp RIGHT			&kp LG(TAB)						&kp C_MUTE 		&f4_f13 	&f5_f14		&f6_f15 	&kp PSCRN	XXX
 	XXX	&kp LC(Z)		&hrm LALT LC(X)		&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 		&kp C_VOL_DN	&f7_f16		&f8_f17		&f9_f18		&kp LC(S)	XXX
-		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE							SW_APP_0		SW_APP_1	SW_APP_2	&bt BT_NXT	&bt BT_CLR
+		XXX				&tog NAV			M_MOUSE				L_MOUSE				R_MOUSE							SW_APP_0		SW_APP_1	SW_APP_2	XXX			XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN &inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
