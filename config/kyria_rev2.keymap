@@ -6,21 +6,36 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define DEFAULT		0
 #define SYM			1
 #define NAV			2
-#define QWERTY		3
+#define MOUSE		3
+#define QWERTY		4
 
 #define THUMB_NONE 	&none &none &none &none
 #define XXX 		&none
 
-#define QUICK_TAP_MS_DEFAULT 125
+/**
+ * Key indices:
+ * 1-5		6-10
+ * 13-17	18-22
+ * 25-29	34-38
+ * 40-44	45-49
+ */
+#define KEYS_L	1  2  3  4  5	\
+				13 14 15 16 17	\
+				25 26 27 28 29
+#define KEYS_R  6  7  8  9  10	\
+				18 19 20 21 22	\
+				34 35 36 37 38
+#define KEYS_T	40 41 42 43 44	\
+				45 46 47 48 49
+
+#define QUICK_TAP_MS_DEFAULT 200
 
 // Unimplemented features
-#define L_MOUSE XXX
-#define R_MOUSE XXX
-#define M_MOUSE XXX
 #define SW_APP_0 XXX
 #define SW_APP_1 XXX
 #define SW_APP_2 XXX
@@ -36,32 +51,39 @@
 
 / {
 	behaviors {
-		hrm: home-row-mod {
-			compatible = "zmk,behavior-hold-tap";
-			label = "HOME_ROW_MOD";
-			#binding-cells = <2>;
-			flavor = "tap-preferred";
-			tapping-term-ms = <200>;
-			quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
-			global-quick-tap;
+		// hrm: home-row-mod {
+		// 	compatible = "zmk,behavior-hold-tap";
+		// 	label = "HOME_ROW_MOD";
+		// 	#binding-cells = <2>;
+		// 	flavor = "tap-preferred";
+		// 	tapping-term-ms = <200>;
+		// 	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
+		// 	bindings = <&kp>, <&kp>;
+		// };
+
+		/* left-hand HRMs */
+		ZMK_BEHAVIOR(hrml, hold_tap,
+		    flavor = "balanced";
+			tapping-term-ms = <280>;
+			quick-tap-ms = <175>;                // repeat on tap-into-hold
+			// global-quick-tap-ms = <150>;         // requires PR #1387
+			global-quick-tap;         // requires PR #1387
 			bindings = <&kp>, <&kp>;
-		};
-		tlt: toggle-layer-tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "TOGGLE_LAYER_TAP";
-			#binding-cells = <2>;
-			flavor = "tap-preferred";
-			tapping-term-ms = <200>;
-			quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
-			bindings = <&tog>, <&kp>;
-		};
-		rsb: reset-bootloader {
-			compatible = "zmk,behavior-tap-dance";
-            label = "RESET_BOOTLOADER";
-            #binding-cells = <0>;
-            tapping-term-ms = <1000>;
-            bindings = <&reset>, <&bootloader>, <&tog 3>;
-		};
+			hold-trigger-key-positions = <KEYS_R KEYS_T>;
+			// hold-trigger-on-release;             // requires PR #1423
+		);
+
+		/* right-hand HRMs */
+		ZMK_BEHAVIOR(hrmr, hold_tap,
+		    flavor = "balanced";
+			tapping-term-ms = <280>;
+			quick-tap-ms = <175>;                // repeat on tap-into-hold
+			// global-quick-tap-ms = <150>;         // requires PR #1387
+			global-quick-tap;         // requires PR #1387
+			bindings = <&kp>, <&kp>;
+			hold-trigger-key-positions = <KEYS_L KEYS_T>;
+			// hold-trigger-on-release;             // requires PR #1423
+		);
 
 		/**
 		 * Custom shifted keys
@@ -159,15 +181,50 @@
     	};
 	};
 
+	combos {
+		/**
+		 * Key indices:
+		 * 0-5		6-11
+		 * 12-17	18-23
+		 * 24-29	34-39
+		 * 40-44	45-50
+		 */
+        compatible = "zmk,combos";
+        combo_mouse_enter {
+            timeout-ms = <50>;
+            key-positions = <2 3 4>; /* W F P */
+            bindings = <&tog MOUSE>;
+			layers = <DEFAULT>;
+        };
+		combo_mouse_enter_do_nothing {
+            timeout-ms = <50>;
+            key-positions = <2 3 4>; /* W F P */
+            bindings = <&none>;
+			layers = <MOUSE>;
+        };
+		combo_mouse_exit {
+			timeout-ms = <50>;
+            key-positions = <7 8 9>; /* L U Y */
+            bindings = <&tog MOUSE>;
+			layers = <MOUSE>;
+		};
+		combo_mouse_exit_do_nothing {
+			timeout-ms = <50>;
+            key-positions = <7 8 9>; /* L U Y */
+            bindings = <&none>;
+			layers = <DEFAULT>;
+		};
+    };
+
 	keymap {
 		compatible = "zmk,keymap";
 
 		default_layer {
 			bindings = <
-	XXX	&kp Q      	&kp W       &kp F        	&kp P       	&kp B                		&kp J		&kp L       	&kp U           &kp Y      		&semi_tilde	XXX
-	XXX	&hrm LGUI A	&hrm LALT R	&hrm LSHIFT S	&hrm LCTRL T	&kp G                       &kp M       &hrm RCTRL N	&hrm RSHIFT E  	&hrm RALT I		&hrm RGUI O	XXX
-	XXX	&kp Z      	&kp X       &kp C        	&kp D       	&kp V 		THUMB_NONE    	&kp K       &kp H      		&comma_qmark	&dot_excl		&fslh_bslh 	XXX
-		&rsb       	&tog NAV 	&kp DEL    		&lt NAV BSPC	&kp RET              		&kp TAB		&lt SYM SPACE	&kp ESC        	&key_repeat		&rsb
+	XXX	&kp Q      		&kp W       	&kp F        	&kp P       	&kp B                		&kp J		&kp L       	&kp U           &kp Y      		&semi_tilde		XXX
+	XXX	&hrml LGUI A	&hrml LALT R	&hrml LSHIFT S	&hrml LCTRL T	&kp G                       &kp M       &hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmr RGUI O	XXX
+	XXX	&kp Z      		&kp X       	&kp C        	&kp D       	&kp V 		THUMB_NONE    	&kp K       &kp H      		&comma_qmark	&dot_excl		&fslh_bslh 		XXX
+		&tog QWERTY		&key_repeat		&kp DEL    		&lt NAV BSPC	&kp RET              		&kp TAB		&lt SYM SPACE	&kp ESC        	&key_repeat		&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -189,10 +246,10 @@
 
 		sym_layer {
 			bindings = <
-	XXX	&kp GT		&kp N1		&kp N2	&kp N3	&kp PLUS                &kp PRCNT  	&kp LBKT 	&kp RBKT 	&kp AMPS    &kp AT		XXX
-	XXX	&kp EQUAL	&kp N4		&kp N5	&kp N6	&kp MINUS				&kp HASH	&kp LPAR 	&kp RPAR    &kp UNDER  	&caps_word	XXX
-	XXX	&kp LT		&kp N7		&kp N8	&kp N9	&kp STAR	THUMB_NONE	&kp DLLR   	&kp LBRC 	&kp RBRC	&kp PIPE   	&kp COLON	XXX
-	    &trans		&key_repeat	&kp SQT	&kp N0  &kp DQT                 &kp GRAVE  	XXX 		&kp CARET	XXX			XXX
+	XXX	&kp GT				&kp N1			&kp N2			&kp N3			&kp PLUS                &kp PRCNT  	&kp COLON 			&kp AT 				&kp AMPS    		&kp HASH	XXX
+	XXX	&hrml LGUI MINUS	&hrml LALT N4	&hrml LSHIFT N5	&hrml LCTRL N6	&kp EQUAL				&kp LBKT	&hrmr RCTRL LPAR	&hrmr RSHIFT LBRC	&hrmr RALT UNDER	&caps_word	XXX
+	XXX	&kp LT				&kp N7			&kp N8			&kp N9			&kp STAR	THUMB_NONE	&kp RBKT	&kp RPAR 			&kp RBRC			&kp PIPE   			&kp DLLR	XXX
+	    XXX					&trans			&kp N0			&kp SQT			&kp DQT                 &kp GRAVE  	XXX 				&kp CARET			&trans				XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -213,10 +270,21 @@
 
 		nav_layer {
 			bindings = <
-	XXX	&kp LA(RIGHT)	&kp PG_DN		&kp UP				&kp PG_UP			&key_repeat            		&kp C_VOL_UP		&f1_f10 			&f2_f11					&f3_f12		XXX			XXX
-	XXX	&kp LA(LEFT)	&kp LEFT		&kp DOWN			&kp RIGHT			&kp LG(TAB)					&kp C_MUTE 			&f4_f13 			&f5_f14					&f6_f15 	&kp PSCRN	XXX
-	XXX	&kp LC(Z)		&hrm LALT LC(X)	&hrm LSHIFT LC(C)	&hrm LCTRL LC(V)	&kp LC(Y)		THUMB_NONE 	&kp C_VOL_DN		&f7_f16				&f8_f17					&f9_f18		&kp LC(S)	XXX
-		XXX				&tog NAV		M_MOUSE				L_MOUSE				R_MOUSE						&mt RSHIFT SW_APP_0	&mt RCTRL SW_APP_1	&mt RC(RSHIFT) SW_APP_3	XXX			XXX
+	XXX	XXX					&kp HOME		&kp UP				&kp END				&kp LC(S)	           		&kp C_VOL_UP		&f1_f10 			&f2_f11					&f3_f12		XXX			XXX
+	XXX	&hrml LGUI LC(A)	&hrml LALT LEFT	&hrml LSHIFT DOWN	&hrml LCTRL RIGHT	&kp LA(TAB)					&kp C_MUTE 			&f4_f13 			&f5_f14					&f6_f15 	&kp PSCRN	XXX
+	XXX	&kp LC(Z)			&kp LC(X)		&kp LC(C)			&kp	LC(Y)			&kp LC(V)		THUMB_NONE 	&kp C_VOL_DN		&f7_f16				&f8_f17					&f9_f18		XXX			XXX
+		&bootloader		XXX				XXX					XXX					XXX							&mt RSHIFT SW_APP_0	&mt RCTRL SW_APP_1	&mt RC(RSHIFT) SW_APP_3	XXX			&bootloader
+			>;
+
+			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+
+		mouse_layer {
+			bindings = <
+	XXX	&kp LA(RIGHT)		&kp HOME		&kp UP				&kp END				&kp LC(S)            		XXX	XXX	XXX	XXX XXX	XXX
+	XXX	&hrml LGUI LA(LEFT)	&hrml LALT LEFT	&hrml LSHIFT DOWN	&hrml LCTRL RIGHT	&kp LA(TAB)					XXX	XXX	XXX	XXX XXX	XXX
+	XXX	&kp LC(Z)			&kp LC(X)		&kp LC(C)			&kp LC(Y)			&kp LC(V)		THUMB_NONE 	XXX	XXX	XXX	XXX XXX	XXX
+		XXX					&kp BSPC		&kp RET				&mkp LCLK			&mkp RCLK					XXX	XXX	XXX	XXX XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -225,7 +293,7 @@
 		qwerty_layer {
 			bindings = <
 	XXX	&kp Q		&kp W  		&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   	&kp P       	XXX  
-	XXX	&hrm LGUI A	&hrm LALT S	&hrm LSHIFT R	&hrm LCTRL T	&kp G                 &kp H  	&hrm RCTRL J	&hrm RSHIFT K	&hrm RALT L	&hrm RGUI SEMI	XXX  
+	XXX	&hrml LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL T	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmr RGUI SEMI	XXX  
 	XXX	&kp Z 		&kp X  		&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 	&kp FSLH    	XXX  
 		&tog QWERTY	&trans 		&trans 			&trans 			&trans                &trans	&trans 			&trans    		&trans  	&tog QWERTY
 			>;
