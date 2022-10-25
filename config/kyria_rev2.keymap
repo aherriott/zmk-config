@@ -62,28 +62,34 @@
 		// };
 
 		/* left-hand HRMs */
-		ZMK_BEHAVIOR(hrml, hold_tap,
+		hrml: left-home-row-mod {
+			compatible = "zmk,behavior-hold-tap";
+			label = "LEFT_HOME_ROW_MOD";
+			#binding-cells = <2>;
 		    flavor = "balanced";
 			tapping-term-ms = <280>;
 			quick-tap-ms = <175>;                // repeat on tap-into-hold
 			// global-quick-tap-ms = <150>;         // requires PR #1387
-			global-quick-tap;         // requires PR #1387
+			global-quick-tap;
 			bindings = <&kp>, <&kp>;
 			hold-trigger-key-positions = <KEYS_R KEYS_T>;
 			// hold-trigger-on-release;             // requires PR #1423
-		);
+		};
 
 		/* right-hand HRMs */
-		ZMK_BEHAVIOR(hrmr, hold_tap,
+		hrmr: right-home-row-mod {
+			compatible = "zmk,behavior-hold-tap";
+			label = "RIGHT_HOME_ROW_MOD";
+			#binding-cells = <2>;
 		    flavor = "balanced";
 			tapping-term-ms = <280>;
 			quick-tap-ms = <175>;                // repeat on tap-into-hold
 			// global-quick-tap-ms = <150>;         // requires PR #1387
-			global-quick-tap;         // requires PR #1387
+			global-quick-tap;
 			bindings = <&kp>, <&kp>;
 			hold-trigger-key-positions = <KEYS_L KEYS_T>;
 			// hold-trigger-on-release;             // requires PR #1423
-		);
+		};
 
 		/**
 		 * Custom shifted keys
