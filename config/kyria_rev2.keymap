@@ -8,6 +8,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
 
+#include "helper.h"
+
 #define DEFAULT		0
 #define QWERTY		1
 #define MOUSE		2
@@ -60,6 +62,29 @@
 	quick-tap-ms = <200>;
 };
 
+/* Tap copy, double tap cut */
+ZMK_BEHAVIOR(copy_cut, tap_dance,
+	tapping-term-ms = <200>;
+	bindings = <&kp LC(C)>, <&kp LC(X)>;
+)
+
+/* Tap undo, double tap redo */
+ZMK_BEHAVIOR(undo_redo, tap_dance,
+	tapping-term-ms = <200>;
+	bindings = <&kp LC(Z)>, <&kp LC(Y)>;
+)
+
+/* Tap back, double tap forward */
+ZMK_BEHAVIOR(back_forward, tap_dance,
+	tapping-term-ms = <200>;
+	bindings = <&kp LA(LEFT))>, <&kp LA(RIGHT)>;
+)
+
+/**
+ * Custom shifted keys
+ */
+ZMK_MOD_SHIFT(comma_qmark, COMMA, QMARK)
+
 / {
 	behaviors {
 		/* left-hand HRMs */
@@ -92,34 +117,16 @@
 			// hold-trigger-on-release;             // requires PR #1423
 		};
 
-		/* Tap copy, double tap cut */
-		ZMK_BEHAVIOR(copy_cut, tap_dance,
-			tapping-term-ms = <200>;
-			bindings = <&kp LC(C)>, <&kp LC(X)>;
-		)
-
-		/* Tap undo, double tap redo */
-		ZMK_BEHAVIOR(undo_redo, tap_dance,
-			tapping-term-ms = <200>;
-			bindings = <&kp LC(Z)>, <&kp LC(Y)>;
-		)
-
-		/* Tap back, double tap forward */
-		ZMK_BEHAVIOR(back_forward, tap_dance,
-			tapping-term-ms = <200>;
-			bindings = <&kp LA(LEFT))>, <&kp LA(RIGHT)>;
-		)
-
 		/**
 		 * Custom shifted keys
 		 */
-		comma_qmark: comma_qmark-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "comma_qmark_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp QMARK>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
+		// comma_qmark: comma_qmark-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "comma_qmark_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp COMMA>, <&kp QMARK>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
 		semi_tilde: semi_tilde-custom-shift {
             compatible = "zmk,behavior-mod-morph";
             label = "semi_tilde_CUSTOM_SHIFT";
@@ -245,12 +252,12 @@
     };
 
 	macros {
-        ZMK_MACRO(end_dot,
+        ZMK_BEHAVIOR(end_dot, macro,
 			wait-ms = <30>;
 			tap-ms = <40>;
 			bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
 		)
-		ZMK_MACRO(end_qmark,
+		ZMK_BEHAVIOR(end_qmark, macro,
 			wait-ms = <30>;
 			tap-ms = <40>;
 			bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
