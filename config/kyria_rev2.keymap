@@ -9,13 +9,27 @@
 #include <dt-bindings/zmk/mouse.h>
 
 #define DEFAULT		0
-#define SYM			1
-#define NAV			2
-#define MOUSE		3
-#define QWERTY		4
+#define QWERTY		1
+#define MOUSE		2
+#define SYM			4
+#define NAV			5
+#define NUM			6
+#define FUN			7
 
 #define THUMB_NONE 	&none &none &none &none
 #define XXX 		&none
+
+#define HYPER_M(X) LG(LA(LS(LC(X))))
+#define HYPER LG(LA(LS(LCTRL)))
+
+#define CUSTOM_SHIFT(NAME, L_KEY, U_KEY) 			\
+			NAME: NAME {							\
+            compatible = "zmk,behavior-mod-morph";	\
+            label = #NAME"_CUSTOM_SHIFT";			\
+            #binding-cells = <0>;					\
+            bindings = <&kp L_KEY>, <&kp U_KEY>;	\
+            mods = <(MOD_LSFT|MOD_RSFT)>;			\
+    	};
 
 /**
  * Key indices:
@@ -33,34 +47,21 @@
 #define KEYS_T	40 41 42 43 44	\
 				45 46 47 48 49
 
-#define QUICK_TAP_MS_DEFAULT 200
-
-// Unimplemented features
-#define SW_APP_0 XXX
-#define SW_APP_1 XXX
-#define SW_APP_2 XXX
-#define SW_APP_3 XXX
+#define SW_APP_0 &kp HYPER_M(N0)
+#define SW_APP_1 &kp HYPER_M(N1)
+#define SW_APP_2 &kp HYPER_M(N2)
+#define SW_APP_3 &kp HYPER_M(N3)
 
 &lt {
-	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
+	quick-tap-ms = <200>;
 };
 
 &mt {
-	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
+	quick-tap-ms = <200>;
 };
 
 / {
 	behaviors {
-		// hrm: home-row-mod {
-		// 	compatible = "zmk,behavior-hold-tap";
-		// 	label = "HOME_ROW_MOD";
-		// 	#binding-cells = <2>;
-		// 	flavor = "tap-preferred";
-		// 	tapping-term-ms = <200>;
-		// 	quick-tap-ms = <QUICK_TAP_MS_DEFAULT>;
-		// 	bindings = <&kp>, <&kp>;
-		// };
-
 		/* left-hand HRMs */
 		hrml: left-home-row-mod {
 			compatible = "zmk,behavior-hold-tap";
@@ -90,6 +91,24 @@
 			hold-trigger-key-positions = <KEYS_L KEYS_T>;
 			// hold-trigger-on-release;             // requires PR #1423
 		};
+
+		/* Tap copy, double tap cut */
+		ZMK_BEHAVIOR(copy_cut, tap_dance,
+			tapping-term-ms = <200>;
+			bindings = <&kp LC(C)>, <&kp LC(X)>;
+		)
+
+		/* Tap undo, double tap redo */
+		ZMK_BEHAVIOR(undo_redo, tap_dance,
+			tapping-term-ms = <200>;
+			bindings = <&kp LC(Z)>, <&kp LC(Y)>;
+		)
+
+		/* Tap back, double tap forward */
+		ZMK_BEHAVIOR(back_forward, tap_dance,
+			tapping-term-ms = <200>;
+			bindings = <&kp LA(LEFT))>, <&kp LA(RIGHT)>;
+		)
 
 		/**
 		 * Custom shifted keys
@@ -122,69 +141,69 @@
             bindings = <&kp FSLH>, <&kp BSLH>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
     	};
-		f1_f10: f1_f10-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f1_f10_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F1>, <&kp F10>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-   	 	};
-		f2_f11: f2_f11-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f2_f11_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F2>, <&kp F11>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f3_f12: f3_f12-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f3_f12_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F3>, <&kp F12>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f4_f13: f4_f13-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f4_f13_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F4>, <&kp F13>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f5_f14: f5_f14-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f5_f14_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F5>, <&kp F14>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f6_f15: f6_f15-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f6_f15_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F6>, <&kp F15>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f7_f16: f7_f16-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f7_f16_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F7>, <&kp F16>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f8_f17: f8_f17-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f8_f17_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F8>, <&kp F17>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		f9_f18: f9_f18-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "f9_f18_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp F9>, <&kp F18>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
+		// f1_f10: f1_f10-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f1_f10_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F1>, <&kp F10>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+   	 	// };
+		// f2_f11: f2_f11-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f2_f11_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F2>, <&kp F11>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f3_f12: f3_f12-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f3_f12_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F3>, <&kp F12>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f4_f13: f4_f13-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f4_f13_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F4>, <&kp F13>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f5_f14: f5_f14-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f5_f14_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F5>, <&kp F14>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f6_f15: f6_f15-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f6_f15_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F6>, <&kp F15>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f7_f16: f7_f16-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f7_f16_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F7>, <&kp F16>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f8_f17: f8_f17-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f8_f17_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F8>, <&kp F17>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
+		// f9_f18: f9_f18-custom-shift {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     label = "f9_f18_CUSTOM_SHIFT";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp F9>, <&kp F18>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+    	// };
 	};
 
 	combos {
@@ -208,18 +227,34 @@
             bindings = <&none>;
 			layers = <MOUSE>;
         };
-		combo_mouse_exit {
+		combo_exit_all {
 			timeout-ms = <50>;
             key-positions = <7 8 9>; /* L U Y */
-            bindings = <&tog MOUSE>;
-			layers = <MOUSE>;
+            bindings = <&to DEFAULT;
 		};
-		combo_mouse_exit_do_nothing {
-			timeout-ms = <50>;
-            key-positions = <7 8 9>; /* L U Y */
-            bindings = <&none>;
-			layers = <DEFAULT>;
-		};
+		combo_num_word {
+            timeout-ms = <50>;
+            key-positions = <3 4>; /* F P */
+            bindings = <&tog NUM>;
+        };
+		combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <7 8>; /* L U */
+            bindings = <&caps_word>;
+        };
+    };
+
+	macros {
+        ZMK_MACRO(end_dot,
+			wait-ms = <30>;
+			tap-ms = <40>;
+			bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
+		)
+		ZMK_MACRO(end_qmark,
+			wait-ms = <30>;
+			tap-ms = <40>;
+			bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
+		)
     };
 
 	keymap {
@@ -227,19 +262,40 @@
 
 		default_layer {
 			bindings = <
-	XXX	&kp Q      		&kp W       	&kp F        	&kp P       	&kp B                		&kp J		&kp L       	&kp U           &kp Y      		&semi_tilde		XXX
-	XXX	&hrml LGUI A	&hrml LALT R	&hrml LSHIFT S	&hrml LCTRL T	&kp G                       &kp M       &hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmr RGUI O	XXX
-	XXX	&kp Z      		&kp X       	&kp C        	&kp D       	&kp V 		THUMB_NONE    	&kp K       &kp H      		&comma_qmark	&dot_excl		&fslh_bslh 		XXX
-		&tog QWERTY		&key_repeat		&kp DEL    		&lt NAV BSPC	&kp RET              		&kp TAB		&lt SYM SPACE	&kp ESC        	&key_repeat		&tog QWERTY
+	XXX	&kp Q      	&kp W       &kp F   &kp P       	&kp B                	&kp J			&kp L			&kp U           &kp Y      	&semi_tilde		XXX
+	XXX	&kp A		&kp R		&kp S	&kp T			&kp G                   &kp M       	&kp N			&kp E  			&kp I		&kp O			XXX
+	XXX	&kp Z      	&kp X       &kp C   &kp D       	&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl	&fslh_bslh 		XXX
+		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt RET NUM             &mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
 		};
 
+		qwerty_layer {
+			bindings = <
+	XXX	&kp Q			&kp W  			&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   		&kp P       	XXX  
+	XXX	&hrml LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL T	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmr RGUI SEMI	XXX  
+	XXX	&kp Z 			&kp X  			&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 		&kp FSLH    	XXX  
+		&tog QWERTY		&trans 			&trans 			&trans 			&trans                &trans	&trans 			&trans    		&trans  		&tog QWERTY
+			>;
+
+			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+
+		mouse_layer {
+			bindings = <
+	XXX	SW_APP_3	SW_APP_2    	SW_APP_1	SW_APP_0	XXX						XXX	XXX	XXX	XXX XXX	XXX
+	XXX	&mkp MCLK	&back_forward	&mkp RCLK	&mkp LCLK	XXX						XXX	XXX	XXX	XXX XXX	XXX
+	XXX	&sk LGUI	&sk LALT		&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX	XXX	XXX	XXX XXX	XXX
+		XXX			&trans			&trans		&trans		&trans					XXX	XXX	XXX	XXX XXX
+			>;
+
+			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
+		};
 
 		/**
 		*   Features (mostly ordered by importance):
-		*		ENG: DOT, COMMA, QMARK, EXCL
+		*		ENG: DOT, COMMA, QMARK, EXCL, AT
 		*			SEMI, COLON, DQT, SQT
 		* 		C: SEMI, EQUAL, LPAR, RPAR, LBRC, RBRC, UNDER,
 		*			EXCL, SQT, DQT, PRCNT, STAR, PLUS, MINUS, LT, GT, LBKT, RBKT, AMPS, PIPE, HASH,
@@ -247,15 +303,15 @@
 		*		bash: SQT, DQT, TILDE, FSLH, DLLR, MINUS, AMPS, PIPE
 		*			LBRC, RBRC, GT, STAR,
 		*        
-		*		Low usage: AT, GRAVE, BSLH, CARET
+		*		Low usage: GRAVE, BSLH, CARET
 		*/
 
 		sym_layer {
 			bindings = <
-	XXX	&kp GT				&kp N1			&kp N2			&kp N3			&kp PLUS                &kp PRCNT  	&kp COLON 			&kp AT 				&kp AMPS    		&kp HASH	XXX
-	XXX	&hrml LGUI MINUS	&hrml LALT N4	&hrml LSHIFT N5	&hrml LCTRL N6	&kp EQUAL				&kp LBKT	&hrmr RCTRL LPAR	&hrmr RSHIFT LBRC	&hrmr RALT UNDER	&caps_word	XXX
-	XXX	&kp LT				&kp N7			&kp N8			&kp N9			&kp STAR	THUMB_NONE	&kp RBKT	&kp RPAR 			&kp RBRC			&kp PIPE   			&kp DLLR	XXX
-	    XXX					&trans			&kp N0			&kp SQT			&kp DQT                 &kp GRAVE  	XXX 				&kp CARET			&trans				XXX
+	XXX	&kp GT		&kp AMPS	&kp PLUS	&kp LBRC	&kp RBRC               	&kp CARET	&kp COLON	&kp DLLR	&kp PRCNT   XXX			XXX
+	XXX	&kp EQUAL	&kp UNDER 	&kp MINUS	&kp LPAR	&kp RPAR				&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
+	XXX	&kp LT		&kp PIPE 	&kp STAR	&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp AT		&kp HASH	&end_dot	XXX			XXX
+	    XXX			XXX			XXX			&kp SQT		&kp DQT     			XXX 		XXX 		XXX			XXX			XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -276,32 +332,32 @@
 
 		nav_layer {
 			bindings = <
-	XXX	XXX					&kp HOME		&kp UP				&kp END				&kp LC(S)	           		&kp C_VOL_UP		&f1_f10 			&f2_f11					&f3_f12		XXX			XXX
-	XXX	&hrml LGUI LC(A)	&hrml LALT LEFT	&hrml LSHIFT DOWN	&hrml LCTRL RIGHT	&kp LA(TAB)					&kp C_MUTE 			&f4_f13 			&f5_f14					&f6_f15 	&kp PSCRN	XXX
-	XXX	&kp LC(Z)			&kp LC(X)		&kp LC(C)			&kp	LC(Y)			&kp LC(V)		THUMB_NONE 	&kp C_VOL_DN		&f7_f16				&f8_f17					&f9_f18		XXX			XXX
-		&bootloader		XXX				XXX					XXX					XXX							&mt RSHIFT SW_APP_0	&mt RCTRL SW_APP_1	&mt RC(RSHIFT) SW_APP_3	XXX			&bootloader
+	XXX	&kp PSCRN	&kp HOME	&kp UP		&kp END		XXX			           		XXX			XXX			XXX			XXX			XXX			XXX
+	XXX	&kp LC(S)	&kp LEFT	&kp DOWN	&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
+	XXX	XXX			&undo_redo	&copy_cut	&kp LC(V)	XXX				THUMB_NONE 	XXX			XXX			XXX			XXX			XXX			XXX
+		&bootloader	XXX			XXX			XXX			XXX							SW_APP_0	SW_APP_1	SW_APP_2	SW_APP_3	&bootloader
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
 		};
 
-		mouse_layer {
+		num_layer {
 			bindings = <
-	XXX	&kp LA(RIGHT)		&kp HOME		&kp UP				&kp END				&kp LC(S)            		XXX	XXX	XXX	XXX XXX	XXX
-	XXX	&hrml LGUI LA(LEFT)	&hrml LALT LEFT	&hrml LSHIFT DOWN	&hrml LCTRL RIGHT	&kp LA(TAB)					XXX	XXX	XXX	XXX XXX	XXX
-	XXX	&kp LC(Z)			&kp LC(X)		&kp LC(C)			&kp LC(Y)			&kp LC(V)		THUMB_NONE 	XXX	XXX	XXX	XXX XXX	XXX
-		XXX					&kp BSPC		&kp RET				&mkp LCLK			&mkp RCLK					XXX	XXX	XXX	XXX XXX
+	XXX	XXX			XXX			XXX			XXX			XXX						XXX		&kp N7	&kp N8	&kp N9	XXX			XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				XXX		&kp N4	&kp N5	&kp N6	&tog NUM	XXX
+	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	XXX		&kp N1	&kp N2	&kp N3	XXX			XXX
+		XXX			&trans		&trans		&trans		&trans					&mo FUN	&trans	&kp N0	XXX 	XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
 		};
 
-		qwerty_layer {
+		fun_layer {
 			bindings = <
-	XXX	&kp Q		&kp W  		&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   	&kp P       	XXX  
-	XXX	&hrml LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL T	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmr RGUI SEMI	XXX  
-	XXX	&kp Z 		&kp X  		&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 	&kp FSLH    	XXX  
-		&tog QWERTY	&trans 		&trans 			&trans 			&trans                &trans	&trans 			&trans    		&trans  	&tog QWERTY
+	XXX	XXX			XXX			XXX			XXX			XXX						XXX		&kp F7	&kp F8	&kp F9	&kp F10	XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				XXX		&kp F4	&kp F5	&kp F6	&kp F11	XXX
+	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	XXX		&kp F1	&kp F2	&kp F3	&kp F12	XXX
+		XXX			&trans		&trans		&trans		&trans					&trans	&trans	&kp N0	XXX 	XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
