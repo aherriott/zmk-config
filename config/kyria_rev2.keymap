@@ -13,10 +13,10 @@
 #define DEFAULT		0
 #define QWERTY		1
 #define MOUSE		2
-#define SYM			4
-#define NAV			5
-#define NUM			6
-#define FUN			7
+#define SYM			3
+#define NAV			4
+#define NUM			5
+#define FUN			6
 
 #define THUMB_NONE 	&none &none &none &none
 #define XXX 		&none
