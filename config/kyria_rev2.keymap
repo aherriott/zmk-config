@@ -183,7 +183,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 	XXX	&kp Q      	&kp W       &kp F   &kp P       	&kp B                	&kp J			&kp L			&kp U           &kp Y      	&semi_tilde		XXX
 	XXX	&kp A		&kp R		&kp S	&kp T			&kp G                   &kp M       	&kp N			&kp E  			&kp I		&kp O			XXX
 	XXX	&kp Z      	&kp X       &kp C   &kp D       	&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl	&fslh_bslh 		XXX
-		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt RET NUM             &mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
+		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
