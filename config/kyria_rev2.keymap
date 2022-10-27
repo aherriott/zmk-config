@@ -24,15 +24,6 @@
 #define HYPER_M(X) LG(LA(LS(LC(X))))
 #define HYPER LG(LA(LS(LCTRL)))
 
-#define CUSTOM_SHIFT(NAME, L_KEY, U_KEY) 			\
-			NAME: NAME {							\
-            compatible = "zmk,behavior-mod-morph";	\
-            label = #NAME"_CUSTOM_SHIFT";			\
-            #binding-cells = <0>;					\
-            bindings = <&kp L_KEY>, <&kp U_KEY>;	\
-            mods = <(MOD_LSFT|MOD_RSFT)>;			\
-    	};
-
 /**
  * Key indices:
  * 1-5		6-10
@@ -62,6 +53,38 @@
 	quick-tap-ms = <200>;
 };
 
+/**
+ * Home row hold-taps
+*/
+
+/* left-hand HRMs */
+ZMK_BEHAVIOR(hrml, hold_tap, 
+	flavor = "balanced";
+	tapping-term-ms = <280>;
+	quick-tap-ms = <175>;                // repeat on tap-into-hold
+	// global-quick-tap-ms = <150>;         // requires PR #1387
+	global-quick-tap;
+	bindings = <&kp>, <&kp>;
+	hold-trigger-key-positions = <KEYS_R KEYS_T>;
+	// hold-trigger-on-release;             // requires PR #1423
+)
+
+/* right-hand HRMs */
+ZMK_BEHAVIOR(hrmr, hold_tap,
+	flavor = "balanced";
+	tapping-term-ms = <280>;
+	quick-tap-ms = <175>;                // repeat on tap-into-hold
+	// global-quick-tap-ms = <150>;         // requires PR #1387
+	global-quick-tap;
+	bindings = <&kp>, <&kp>;
+	hold-trigger-key-positions = <KEYS_L KEYS_T>;
+	// hold-trigger-on-release;             // requires PR #1423
+)
+
+/**
+ * Tap Dances
+*/
+
 /* Tap copy, double tap cut */
 ZMK_BEHAVIOR(copy_cut, tap_dance,
 	tapping-term-ms = <200>;
@@ -77,150 +100,45 @@ ZMK_BEHAVIOR(undo_redo, tap_dance,
 /* Tap back, double tap forward */
 ZMK_BEHAVIOR(back_forward, tap_dance,
 	tapping-term-ms = <200>;
-	bindings = <&kp LA(LEFT))>, <&kp LA(RIGHT)>;
+	bindings = <&kp LA(LEFT)>, <&kp LA(RIGHT)>;
 )
 
 /**
  * Custom shifted keys
  */
+
 ZMK_MOD_SHIFT(comma_qmark, COMMA, QMARK)
+ZMK_MOD_SHIFT(semi_tilde, SEMI, TILDE)
+ZMK_MOD_SHIFT(dot_excl, DOT, EXCL)
+ZMK_MOD_SHIFT(fslh_bslh, FSLH, BSLH)
+
+/**
+ * Macros
+*/
+
+ZMK_BEHAVIOR(end_dot, macro,
+	wait-ms = <30>;
+	tap-ms = <40>;
+	bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
+)
+ZMK_BEHAVIOR(end_qmark, macro,
+	wait-ms = <30>;
+	tap-ms = <40>;
+	bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
+)
+
+/**
+ * Combos
+ * 
+ * Key indices:
+ * 0-5		6-11
+ * 12-17	18-23
+ * 24-29	34-39
+ * 40-44	45-50
+*/
 
 / {
-	behaviors {
-		/* left-hand HRMs */
-		hrml: left-home-row-mod {
-			compatible = "zmk,behavior-hold-tap";
-			label = "LEFT_HOME_ROW_MOD";
-			#binding-cells = <2>;
-		    flavor = "balanced";
-			tapping-term-ms = <280>;
-			quick-tap-ms = <175>;                // repeat on tap-into-hold
-			// global-quick-tap-ms = <150>;         // requires PR #1387
-			global-quick-tap;
-			bindings = <&kp>, <&kp>;
-			hold-trigger-key-positions = <KEYS_R KEYS_T>;
-			// hold-trigger-on-release;             // requires PR #1423
-		};
-
-		/* right-hand HRMs */
-		hrmr: right-home-row-mod {
-			compatible = "zmk,behavior-hold-tap";
-			label = "RIGHT_HOME_ROW_MOD";
-			#binding-cells = <2>;
-		    flavor = "balanced";
-			tapping-term-ms = <280>;
-			quick-tap-ms = <175>;                // repeat on tap-into-hold
-			// global-quick-tap-ms = <150>;         // requires PR #1387
-			global-quick-tap;
-			bindings = <&kp>, <&kp>;
-			hold-trigger-key-positions = <KEYS_L KEYS_T>;
-			// hold-trigger-on-release;             // requires PR #1423
-		};
-
-		/**
-		 * Custom shifted keys
-		 */
-		// comma_qmark: comma_qmark-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "comma_qmark_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp COMMA>, <&kp QMARK>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		semi_tilde: semi_tilde-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "semi_tilde_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp SEMI>, <&kp TILDE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		dot_excl: dot_excl-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "dot_excl_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp EXCL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		fslh_bslh: fslh_bslh-custom-shift {
-            compatible = "zmk,behavior-mod-morph";
-            label = "fslh_bslh_CUSTOM_SHIFT";
-            #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp BSLH>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-    	};
-		// f1_f10: f1_f10-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f1_f10_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F1>, <&kp F10>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-   	 	// };
-		// f2_f11: f2_f11-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f2_f11_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F2>, <&kp F11>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f3_f12: f3_f12-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f3_f12_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F3>, <&kp F12>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f4_f13: f4_f13-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f4_f13_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F4>, <&kp F13>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f5_f14: f5_f14-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f5_f14_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F5>, <&kp F14>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f6_f15: f6_f15-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f6_f15_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F6>, <&kp F15>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f7_f16: f7_f16-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f7_f16_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F7>, <&kp F16>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f8_f17: f8_f17-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f8_f17_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F8>, <&kp F17>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-		// f9_f18: f9_f18-custom-shift {
-        //     compatible = "zmk,behavior-mod-morph";
-        //     label = "f9_f18_CUSTOM_SHIFT";
-        //     #binding-cells = <0>;
-        //     bindings = <&kp F9>, <&kp F18>;
-        //     mods = <(MOD_LSFT|MOD_RSFT)>;
-    	// };
-	};
-
 	combos {
-		/**
-		 * Key indices:
-		 * 0-5		6-11
-		 * 12-17	18-23
-		 * 24-29	34-39
-		 * 40-44	45-50
-		 */
         compatible = "zmk,combos";
         combo_mouse_enter {
             timeout-ms = <50>;
@@ -237,7 +155,7 @@ ZMK_MOD_SHIFT(comma_qmark, COMMA, QMARK)
 		combo_exit_all {
 			timeout-ms = <50>;
             key-positions = <7 8 9>; /* L U Y */
-            bindings = <&to DEFAULT;
+            bindings = <&to DEFAULT>;
 		};
 		combo_num_word {
             timeout-ms = <50>;
@@ -250,20 +168,13 @@ ZMK_MOD_SHIFT(comma_qmark, COMMA, QMARK)
             bindings = <&caps_word>;
         };
     };
+};
 
-	macros {
-        ZMK_BEHAVIOR(end_dot, macro,
-			wait-ms = <30>;
-			tap-ms = <40>;
-			bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
-		)
-		ZMK_BEHAVIOR(end_qmark, macro,
-			wait-ms = <30>;
-			tap-ms = <40>;
-			bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
-		)
-    };
+/**
+ * Keymap
+*/
 
+/ {
 	keymap {
 		compatible = "zmk,keymap";
 

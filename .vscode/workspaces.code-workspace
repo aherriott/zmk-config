@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.keymap": "c"
+		}
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Build Left",
+				"type": "shell",
+				"command": "west build -s /workspaces/zmk/app -b nice_nano_v2 -d build/left -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=kyria_rev2_left",
+				"group": {
+				  "kind": "build",
+				}
+			},
+			{
+				"label": "Build Right",
+				"type": "shell",
+				"command": "west build -s /workspaces/zmk/app -b nice_nano_v2 -d build/right -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=kyria_rev2_right",
+				"group": {
+				  "kind": "build",
+				}
+			},
+			{
+				"label": "Build",
+				"type": "shell",
+				"command": "cp /workspaces/build/left/zephyr/zmk.uf2 /workspaces/zmk-config/build/left.uf2 && cp /workspaces/build/right/zephyr/zmk.uf2 /workspaces/zmk-config/build/right.uf2",
+				"dependsOn":["Build Left", "Build Right"],
+				"group": {
+				  "kind": "build",
+				  "isDefault": true
+				}
+			},
+		]
+	}
+}
