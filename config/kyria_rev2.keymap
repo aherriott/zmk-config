@@ -59,11 +59,11 @@
 
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
-	flavor = "balanced";
-	tapping-term-ms = <280>;
-	quick-tap-ms = <175>;                // repeat on tap-into-hold
+	flavor = "tap-preferred";
+	tapping-term-ms = <120>;
+	quick-tap-ms = <0>;                // repeat on tap-into-hold
 	// global-quick-tap-ms = <150>;         // requires PR #1387
-	global-quick-tap;
+	// global-quick-tap;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
 	// hold-trigger-on-release;             // requires PR #1423
@@ -72,10 +72,10 @@ ZMK_BEHAVIOR(hrml, hold_tap,
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <280>;
-	quick-tap-ms = <175>;                // repeat on tap-into-hold
+	tapping-term-ms = <120>;
+	quick-tap-ms = <0>;                // repeat on tap-into-hold
 	// global-quick-tap-ms = <150>;         // requires PR #1387
-	global-quick-tap;
+	// global-quick-tap;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
 	// hold-trigger-on-release;             // requires PR #1423
@@ -117,12 +117,12 @@ ZMK_MOD_SHIFT(fslh_bslh, FSLH, BSLH)
 */
 
 ZMK_BEHAVIOR(end_dot, macro,
-	wait-ms = <30>;
+	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
 )
 ZMK_BEHAVIOR(end_qmark, macro,
-	wait-ms = <30>;
+	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
 )
@@ -180,10 +180,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		default_layer {
 			bindings = <
-	XXX	&kp Q      	&kp W       &kp F   &kp P       	&kp B                	&kp J			&kp L			&kp U           &kp Y      	&semi_tilde		XXX
-	XXX	&kp A		&kp R		&kp S	&kp T			&kp G                   &kp M       	&kp N			&kp E  			&kp I		&kp O			XXX
-	XXX	&kp Z      	&kp X       &kp C   &kp D       	&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl	&fslh_bslh 		XXX
-		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
+	XXX	&kp Q      		&kp W       	&kp F   		&kp P       	&kp B                	&kp J			&kp L			&kp U           &kp Y      		&semi_tilde		XXX
+	XXX	&hrml LGUI A	&hrml LALT R	&hrml LSHIFT S	&hrml LCTRL T	&kp G                   &kp M       	&hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmr RGUI O	XXX
+	XXX	&kp Z      		&kp X       	&kp C   		&kp D       	&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl		&fslh_bslh 		XXX
+		&tog QWERTY		&key_repeat		&kp DEL			&lt NAV BSPC	&lt NUM RET            	&mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat		&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -261,9 +261,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		num_layer {
 			bindings = <
-	XXX	XXX			XXX			XXX			XXX			XXX						XXX		&kp N7	&kp N8	&kp N9	XXX			XXX
-	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				XXX		&kp N4	&kp N5	&kp N6	&tog NUM	XXX
-	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	XXX		&kp N1	&kp N2	&kp N3	XXX			XXX
+	XXX	XXX			XXX			XXX			XXX			XXX						XXX		&kp N7	&kp N8	&kp N9	XXX		XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				XXX		&kp N4	&kp N5	&kp N6	&kp	DOT	XXX
+	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	XXX		&kp N1	&kp N2	&kp N3	XXX		XXX
 		XXX			&trans		&trans		&trans		&trans					&mo FUN	&trans	&kp N0	XXX 	XXX
 			>;
 
