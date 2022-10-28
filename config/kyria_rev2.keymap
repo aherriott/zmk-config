@@ -60,7 +60,7 @@
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
 	flavor = "tap-preferred";
-	tapping-term-ms = <120>;
+	tapping-term-ms = <130>;
 	quick-tap-ms = <0>;                // repeat on tap-into-hold
 	// global-quick-tap-ms = <150>;         // requires PR #1387
 	// global-quick-tap;
@@ -72,7 +72,7 @@ ZMK_BEHAVIOR(hrml, hold_tap,
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <120>;
+	tapping-term-ms = <130>;
 	quick-tap-ms = <0>;                // repeat on tap-into-hold
 	// global-quick-tap-ms = <150>;         // requires PR #1387
 	// global-quick-tap;
