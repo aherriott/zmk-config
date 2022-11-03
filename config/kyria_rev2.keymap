@@ -61,24 +61,16 @@
 ZMK_BEHAVIOR(hrml, hold_tap, 
 	flavor = "tap-preferred";
 	tapping-term-ms = <130>;
-	quick-tap-ms = <0>;                // repeat on tap-into-hold
-	// global-quick-tap-ms = <150>;         // requires PR #1387
-	// global-quick-tap;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
-	// hold-trigger-on-release;             // requires PR #1423
 )
 
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
 	tapping-term-ms = <130>;
-	quick-tap-ms = <0>;                // repeat on tap-into-hold
-	// global-quick-tap-ms = <150>;         // requires PR #1387
-	// global-quick-tap;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
-	// hold-trigger-on-release;             // requires PR #1423
 )
 
 /**
@@ -157,11 +149,11 @@ ZMK_BEHAVIOR(end_qmark, macro,
             key-positions = <7 8 9>; /* L U Y */
             bindings = <&to DEFAULT>;
 		};
-		combo_num_word {
-            timeout-ms = <50>;
-            key-positions = <3 4>; /* F P */
-            bindings = <&tog NUM>;
-        };
+//		combo_num_word {
+//          timeout-ms = <50>;
+//          key-positions = <3 4>; /* F P */
+//          bindings = <&tog NUM>;
+//      };
 		combo_caps_word {
             timeout-ms = <50>;
             key-positions = <7 8>; /* L U */
@@ -202,10 +194,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		mouse_layer {
 			bindings = <
-	XXX	SW_APP_3	SW_APP_2    	SW_APP_1	SW_APP_0	XXX						XXX	XXX	XXX	XXX XXX	XXX
-	XXX	&mkp MCLK	&back_forward	&mkp RCLK	&mkp LCLK	XXX						XXX	XXX	XXX	XXX XXX	XXX
-	XXX	&sk LGUI	&sk LALT		&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX	XXX	XXX	XXX XXX	XXX
-		XXX			&trans			&trans		&trans		&trans					XXX	XXX	XXX	XXX XXX
+	XXX	SW_APP_3		SW_APP_2    SW_APP_1	SW_APP_0	XXX						XXX		XXX		XXX		XXX 	XXX	XXX
+	XXX	&back_forward	&mkp MCLK	&mkp RCLK	&mkp LCLK	XXX						XXX		XXX		XXX		XXX 	XXX	XXX
+	XXX	&sk LGUI		&sk LALT	&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX		XXX		XXX		XXX 	XXX	XXX
+		XXX				&trans		&trans		&trans		&trans					&trans	&trans	&trans	&trans	XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
