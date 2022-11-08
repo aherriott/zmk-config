@@ -73,6 +73,22 @@ ZMK_BEHAVIOR(hrmr, hold_tap,
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
 )
 
+/* left-hand HRMs slow */
+ZMK_BEHAVIOR(hrmls, hold_tap, 
+	flavor = "tap-preferred";
+	tapping-term-ms = <180>;
+	bindings = <&kp>, <&kp>;
+	hold-trigger-key-positions = <KEYS_R KEYS_T>;
+)
+
+/* right-hand HRMs slow */
+ZMK_BEHAVIOR(hrmrs, hold_tap,
+	flavor = "balanced";
+	tapping-term-ms = <180>;
+	bindings = <&kp>, <&kp>;
+	hold-trigger-key-positions = <KEYS_L KEYS_T>;
+)
+
 /**
  * Tap Dances
 */
@@ -173,7 +189,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 		default_layer {
 			bindings = <
 	XXX	&kp Q      		&kp W       	&kp F   		&kp P       	&kp B                	&kp J			&kp L			&kp U           &kp Y      		&semi_tilde		XXX
-	XXX	&hrml LGUI A	&hrml LALT R	&hrml LSHIFT S	&hrml LCTRL T	&kp G                   &kp M       	&hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmr RGUI O	XXX
+	XXX	&hrmls LGUI A	&hrml LALT R	&hrml LSHIFT S	&hrml LCTRL T	&kp G                   &kp M       	&hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmrs RGUI O	XXX
 	XXX	&kp Z      		&kp X       	&kp C   		&kp D       	&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl		&fslh_bslh 		XXX
 		&tog QWERTY		&key_repeat		&kp DEL			&lt NAV BSPC	&lt NUM RET            	&mt RSHIFT TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat		&tog QWERTY
 			>;
@@ -184,7 +200,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 		qwerty_layer {
 			bindings = <
 	XXX	&kp Q			&kp W  			&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   		&kp P       	XXX  
-	XXX	&hrml LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL T	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmr RGUI SEMI	XXX  
+	XXX	&hrmls LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL F	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmrs RGUI SEMI	XXX  
 	XXX	&kp Z 			&kp X  			&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 		&kp FSLH    	XXX  
 		&tog QWERTY		&trans 			&trans 			&trans 			&trans                &trans	&trans 			&trans    		&trans  		&tog QWERTY
 			>;
