@@ -45,6 +45,16 @@
 #define SW_APP_2 &kp HYPER_M(N2)
 #define SW_APP_3 &kp HYPER_M(N3)
 
+&lt {
+	quick-tap-ms = <200>;
+	tapping-term-ms = <150>;
+};
+
+&mt {
+	quick-tap-ms = <200>;
+	tapping-term-ms = <150>;
+};
+
 /**
  * Home row hold-taps
 */
