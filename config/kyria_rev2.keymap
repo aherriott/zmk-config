@@ -214,7 +214,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 			bindings = <
 	XXX	SW_APP_3		SW_APP_2    SW_APP_1	SW_APP_0	XXX						XXX		XXX					XXX					XXX 			XXX					XXX
 	XXX	&back_forward	&mkp MCLK	&mkp RCLK	&mkp LCLK	XXX						XXX		&mmv MOVE_LEFT		&mmv MOVE_DOWN		&mmv MOVE_UP	&mmv MOVE_RIGHT		XXX
-	XXX	&sk LGUI		&sk LALT	&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX		&mmh SCROLL_LEFT	&mmh SCROLL_DOWN	&mmh SCROLL_UP	&mmh SCROLL_RIGHT	XXX
+	XXX	&sk LGUI		&sk LALT	&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX		&mwh SCROLL_LEFT	&mwh SCROLL_DOWN	&mwh SCROLL_UP	&mwh SCROLL_RIGHT	XXX
 		XXX				&trans		&trans		&trans		&trans					&trans	&trans	&trans	&trans	XXX
 			>;
 
