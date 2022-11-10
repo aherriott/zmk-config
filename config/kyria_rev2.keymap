@@ -261,7 +261,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 		nav_layer {
 			bindings = <
 	XXX	&kp PSCRN	&kp HOME	&kp LC(S)	&kp END		XXX			           		XXX			XXX			XXX			XXX			XXX			XXX
-	XXX	&kp LEFT	&kp DOWN	&kp UP		&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
+	XXX	&kp LEFT	&kp UP		&kp DOWN	&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
 	XXX	XXX			&undo_redo	&copy_cut	&kp LC(V)	XXX				THUMB_NONE 	XXX			XXX			XXX			XXX			XXX			XXX
 		&bootloader	XXX			XXX			XXX			XXX							SW_APP_0	SW_APP_1	SW_APP_2	SW_APP_3	&bootloader
 			>;
