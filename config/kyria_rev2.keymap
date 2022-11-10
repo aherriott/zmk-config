@@ -201,9 +201,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		qwerty_layer {
 			bindings = <
-	XXX	&kp Q			&kp W  			&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   		&kp P       	XXX  
+	XXX	&kp Q			&kp W  			&kp E  			&kp R  			&kp T                 &kp Y  	&kp U			&kp I     		&kp O   		&kp P       		XXX  
 	XXX	&hrmls LGUI A	&hrml LALT S	&hrml LSHIFT R	&hrml LCTRL F	&kp G                 &kp H  	&hrmr RCTRL J	&hrmr RSHIFT K	&hrmr RALT L	&hrmrs RGUI SEMI	XXX  
-	XXX	&kp Z 			&kp X  			&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 		&kp FSLH    	XXX  
+	XXX	&kp Z 			&kp X  			&kp C  			&kp V  			&kp B   THUMB_NONE    &kp N  	&kp M  			&kp COMMA 		&kp DOT 		&kp FSLH    		XXX  
 		&tog QWERTY		&trans 			&trans 			&trans 			&trans                &trans	&trans 			&trans    		&trans  		&tog QWERTY
 			>;
 
@@ -212,10 +212,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		mouse_layer {
 			bindings = <
-	XXX	SW_APP_3		SW_APP_2    SW_APP_1	SW_APP_0	XXX						XXX		XXX					XXX					XXX 			XXX					XXX
-	XXX	&back_forward	&mkp MCLK	&mkp RCLK	&mkp LCLK	XXX						XXX		&mmv MOVE_LEFT		&mmv MOVE_DOWN		&mmv MOVE_UP	&mmv MOVE_RIGHT		XXX
-	XXX	&sk LGUI		&sk LALT	&sk LSHIFT	&sk LCTRL	XXX			THUMB_NONE 	XXX		&mwh SCROLL_LEFT	&mwh SCROLL_DOWN	&mwh SCROLL_UP	&mwh SCROLL_RIGHT	XXX
-		XXX				&trans		&trans		&trans		&trans					&trans	&trans	&trans	&trans	XXX
+	XXX	SW_APP_3			SW_APP_2    	SW_APP_1			SW_APP_0			XXX						XXX		XXX				XXX				XXX 			XXX				XXX
+	XXX	&sk LCTRL			&sk LSHIFT		&mkp RCLK			&mkp LCLK			&mkp MCLK				XXX		&mmv MOVE_LEFT	&mmv MOVE_DOWN	&mmv MOVE_UP	&mmv MOVE_RIGHT	XXX
+	XXX	&mwh SCROLL_LEFT	&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mwh SCROLL_RIGHT	XXX			THUMB_NONE	XXX		XXX				XXX				XXX				XXX
+		XXX					&trans			&trans				&trans				&trans					&trans	&trans			&trans			&trans			XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -260,10 +260,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		nav_layer {
 			bindings = <
-	XXX	&kp PSCRN	&kp HOME	&kp LC(S)	&kp END		XXX			           		XXX			XXX			XXX			XXX			XXX			XXX
-	XXX	&kp LEFT	&kp UP		&kp DOWN	&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
-	XXX	XXX			&undo_redo	&copy_cut	&kp LC(V)	XXX				THUMB_NONE 	XXX			XXX			XXX			XXX			XXX			XXX
-		&bootloader	XXX			XXX			XXX			XXX							SW_APP_0	SW_APP_1	SW_APP_2	SW_APP_3	&bootloader
+	XXX	&kp PSCRN	&kp HOME		&kp LC(S)	&kp END		XXX			           		XXX			XXX			XXX			XXX			XXX			XXX
+	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
+	XXX	&undo_redo	&back_forward	&copy_cut	&kp LC(V)	XXX				THUMB_NONE 	XXX			XXX			XXX			XXX			XXX			XXX
+		&bootloader	XXX				XXX			XXX			XXX							SW_APP_0	SW_APP_1	SW_APP_2	SW_APP_3	&bootloader
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
