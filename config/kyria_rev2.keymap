@@ -246,9 +246,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		sym_layer {
 			bindings = <
-	XXX	XXX					&kp AMPS			&kp PLUS			&kp LBRC			&kp RBRC               	&kp CARET	&kp GT			&kp DLLR			&kp PRCNT   		XXX				XXX
-	XXX	&hrmls LGUI EQUAL	&hrml LALT UNDER 	&hrml LSHIFT MINUS	&hrml LCTRL LPAR	&kp RPAR				&sk HYPER	&hrmr LCTRL SQT	&hrmr RSHIFT DQT	&hrmr RALT COLON	&hrmrs RGUI AT	XXX
-	XXX	XXX					&kp PIPE 			&kp STAR			&kp LBKT			&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT			&kp HASH			&end_dot			XXX				XXX
+	XXX	XXX			&kp AMPS	&kp PLUS	&kp LBRC	&kp RBRC               	&kp CARET	&kp GT		&kp DLLR	&kp PRCNT   XXX			XXX
+	XXX	HRMLG EQUAL	HRMLA UNDER	HRMLS MINUS	HRMLC LPAR	&kp RPAR				&sk HYPER	HRMRC SQT	HRMRS DQT	HRMRA COLON	HRMRG AT	XXX
+	XXX	XXX			&kp PIPE 	&kp STAR	&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp HASH	&end_dot	XXX			XXX
 																									THUMB_PASS
 			>;
 
