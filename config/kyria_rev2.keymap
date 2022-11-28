@@ -271,7 +271,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 		nav_layer {
 			bindings = <
 	XXX &kp HOME	&kp PG_UP		&kp PG_DN	&kp END		&kp PSCRN		       		XXX			XXX			XXX			XXX			XXX			XXX
-	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LA(TAB)					&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
+	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LC(FSLH)				&sk HYPER	&sk RCTRL	&sk RSHIFT	&sk RALT	&sk RGUI	XXX
 	XXX	&undo_redo	&back_forward	&copy_cut	&kp LC(V)	&kp LC(S)		THUMB_NONE 	XXX			XXX			XXX			XXX			XXX			XXX
 		&bootloader	XXX				XXX			XXX			XXX							SW_APP_0	SW_APP_1	SW_APP_2	SW_APP_3	&bootloader
 			>;
@@ -281,10 +281,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		num_layer {
 			bindings = <
-	XXX	XXX			XXX			XXX			XXX			XXX						XXX		&kp N7	&kp N8	&kp N9	XXX		XXX
-	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				XXX		&kp N4	&kp N5	&kp N6	&kp	DOT	XXX
-	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	XXX		&kp N1	&kp N2	&kp N3	XXX		XXX
-		&trans		&trans		&trans		&trans		&trans					&mo FUN	&trans	&kp N0	XXX 	XXX
+	XXX	XXX			XXX			XXX			XXX			XXX						&kp MINUS	&kp N7	&kp N8	&kp N9	XXX		XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				&kp	DOT		&kp N4	&kp N5	&kp N6	&kp N0	XXX
+	XXX	XXX			XXX			XXX			XXX			XXX			THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
+		&trans		&trans		&trans		&trans		&trans					&mo FUN	&trans	&trans	&trans 	XXX
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
