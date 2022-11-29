@@ -26,12 +26,14 @@
 #define HYPER LG(LA(LS(LCTRL)))
 
 #define HRMLG &hrmls LGUI
-#define HRMLA &hrml LALT
+#define HRMLA &hrmls LALT
 #define HRMLS &hrml LSHIFT
-#define HRMLC &hrml LCTRL
-#define HRMRC &hrmr RCTRL
+#define HRMLSS &hrmls LSHIFT
+#define HRMLC &hrmls LCTRL
+#define HRMRC &hrmrs RCTRL
 #define HRMRS &hrmr RSHIFT
-#define HRMRA &hrmr RALT
+#define HRMRSS &hrmrs RSHIFT
+#define HRMRA &hrmrs RALT
 #define HRMRG &hrmrs RGUI
 
 /**
@@ -56,12 +58,12 @@
 #define SW_APP_3 &kp HYPER_M(N3)
 
 &lt {
-	quick-tap-ms = <200>;
+	quick-tap-ms = <250>;
 	tapping-term-ms = <150>;
 };
 
 &mt {
-	quick-tap-ms = <200>;
+	quick-tap-ms = <250>;
 	tapping-term-ms = <150>;
 };
 
@@ -71,7 +73,7 @@
 
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
-	flavor = "tap-preferred";
+	flavor = "balanced";
 	tapping-term-ms = <130>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -87,8 +89,8 @@ ZMK_BEHAVIOR(hrmr, hold_tap,
 
 /* left-hand HRMs slow */
 ZMK_BEHAVIOR(hrmls, hold_tap, 
-	flavor = "tap-preferred";
-	tapping-term-ms = <180>;
+	flavor = "balanced";
+	tapping-term-ms = <160>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
 )
@@ -96,7 +98,7 @@ ZMK_BEHAVIOR(hrmls, hold_tap,
 /* right-hand HRMs slow */
 ZMK_BEHAVIOR(hrmrs, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <180>;
+	tapping-term-ms = <160>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
 )
@@ -107,19 +109,19 @@ ZMK_BEHAVIOR(hrmrs, hold_tap,
 
 /* Tap copy, double tap cut */
 ZMK_BEHAVIOR(copy_cut, tap_dance,
-	tapping-term-ms = <200>;
+	tapping-term-ms = <250>;
 	bindings = <&kp LC(C)>, <&kp LC(X)>;
 )
 
 /* Tap undo, double tap redo */
 ZMK_BEHAVIOR(undo_redo, tap_dance,
-	tapping-term-ms = <200>;
+	tapping-term-ms = <250>;
 	bindings = <&kp LC(Z)>, <&kp LC(Y)>;
 )
 
 /* Tap back, double tap forward */
 ZMK_BEHAVIOR(back_forward, tap_dance,
-	tapping-term-ms = <200>;
+	tapping-term-ms = <250>;
 	bindings = <&kp LA(LEFT)>, <&kp LA(RIGHT)>;
 )
 
@@ -200,10 +202,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		default_layer {
 			bindings = <
-	XXX	&kp Q   	&kp W   	&kp F   &kp P   		&kp B                	&kp J			&kp L			&kp U           &kp Y      		&semi_tilde		XXX
-	XXX	HRMLG A		HRMLA R		HRMLS S	HRMLC T			&kp G                   &kp M       	&hrmr RCTRL N	&hrmr RSHIFT E  &hrmr RALT I	&hrmrs RGUI O	XXX
-	XXX	&kp Z   	&kp X   	&kp C   &kp D			&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl		&fslh_bslh 		XXX
-		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&lt MOUSE TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat		&tog QWERTY
+	XXX	&kp Q   	&kp W   	&kp F   &kp P   		&kp B                	&kp J			&kp L			&kp U           &kp Y      	&semi_tilde		XXX
+	XXX	HRMLG A		HRMLA R		HRMLS S	HRMLC T			&kp G                   &kp M       	HRMRC N			HRMRS E  		HRMRA I		HRMRG O			XXX
+	XXX	&kp Z   	&kp X   	&kp C   &kp D			&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl	&fslh_bslh 		XXX
+		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&lt MOUSE TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -246,10 +248,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		sym_layer {
 			bindings = <
-	XXX	XXX			&kp AMPS	&kp PLUS	&kp LBRC	&kp RBRC               	&kp CARET	&kp GT		&kp DLLR	&kp PRCNT   XXX			XXX
-	XXX	HRMLG EQUAL	HRMLA UNDER	HRMLS MINUS	HRMLC LPAR	&kp RPAR				&sk HYPER	HRMRC SQT	HRMRS DQT	HRMRA COLON	HRMRG AT	XXX
-	XXX	XXX			&kp PIPE 	&kp STAR	&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp HASH	&end_dot	XXX			XXX
-																									THUMB_PASS
+	XXX	XXX			&kp AMPS	&kp PLUS		&kp LBRC	&kp RBRC               	&kp CARET	&kp GT		&kp DLLR	&kp PRCNT   XXX			XXX
+	XXX	HRMLG EQUAL	HRMLA UNDER	HRMLSS MINUS	HRMLC LPAR	&kp RPAR				&sk HYPER	HRMRC SQT	HRMRSS DQT	HRMRA COLON	HRMRG AT	XXX
+	XXX	XXX			&kp PIPE 	&kp STAR		&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp HASH	&end_dot	XXX			XXX
+																		THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
