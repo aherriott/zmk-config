@@ -74,7 +74,7 @@
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
 	flavor = "balanced";
-	tapping-term-ms = <130>;
+	tapping-term-ms = <100>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
 )
@@ -82,7 +82,7 @@ ZMK_BEHAVIOR(hrml, hold_tap,
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <130>;
+	tapping-term-ms = <100>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
 )
