@@ -74,17 +74,19 @@
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
 	flavor = "balanced";
-	tapping-term-ms = <100>;
+	tapping-term-ms = <115>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
+	global-quick-tap;
 )
 
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <100>;
+	tapping-term-ms = <115>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
+	global-quick-tap;
 )
 
 /* left-hand HRMs slow */
@@ -93,6 +95,7 @@ ZMK_BEHAVIOR(hrmls, hold_tap,
 	tapping-term-ms = <160>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
+	global-quick-tap;
 )
 
 /* right-hand HRMs slow */
@@ -101,6 +104,7 @@ ZMK_BEHAVIOR(hrmrs, hold_tap,
 	tapping-term-ms = <160>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
+	global-quick-tap;
 )
 
 /**
