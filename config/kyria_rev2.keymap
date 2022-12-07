@@ -183,11 +183,6 @@ ZMK_BEHAVIOR(end_qmark, macro,
             key-positions = <7 8 9>; /* L U Y */
             bindings = <&to DEFAULT>;
 		};
-//		combo_num_word {
-//          timeout-ms = <50>;
-//          key-positions = <3 4>; /* F P */
-//          bindings = <&tog NUM>;
-//      };
 		combo_caps_word {
             timeout-ms = <50>;
             key-positions = <7 8>; /* L U */
@@ -228,9 +223,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		mouse_layer {
 			bindings = <
-	XXX	&mwh SCROLL_LEFT	&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mwh SCROLL_RIGHT	XXX						XXX		XXX				XXX				XXX 			XXX				XXX
+	XXX	&mwh SCROLL_LEFT	&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mwh SCROLL_RIGHT	&sk LALT				XXX		XXX				XXX				XXX 			XXX				XXX
 	XXX	&sk LCTRL			&sk LSHIFT		&mkp RCLK			&mkp LCLK			&mkp MCLK				XXX		&mmv MOVE_LEFT	&mmv MOVE_DOWN	&mmv MOVE_UP	&mmv MOVE_RIGHT	XXX
-	XXX	SW_APP_3			SW_APP_2    	SW_APP_1			SW_APP_0			XXX			THUMB_NONE	XXX		XXX				XXX				XXX				XXX
+	XXX	SW_APP_3			SW_APP_2    	SW_APP_1			SW_APP_0			&sk LGUI	THUMB_NONE	XXX		XXX				XXX				XXX				XXX
 																								THUMB_PASS
 			>;
 
