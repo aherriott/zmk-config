@@ -59,12 +59,12 @@
 
 &lt {
 	quick-tap-ms = <250>;
-	tapping-term-ms = <150>;
+	tapping-term-ms = <130>;
 };
 
 &mt {
 	quick-tap-ms = <250>;
-	tapping-term-ms = <150>;
+	tapping-term-ms = <130>;
 };
 
 /**
@@ -74,7 +74,7 @@
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
 	flavor = "balanced";
-	tapping-term-ms = <115>;
+	tapping-term-ms = <130>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_R KEYS_T>;
 	global-quick-tap;
@@ -83,7 +83,7 @@ ZMK_BEHAVIOR(hrml, hold_tap,
 /* right-hand HRMs */
 ZMK_BEHAVIOR(hrmr, hold_tap,
 	flavor = "balanced";
-	tapping-term-ms = <115>;
+	tapping-term-ms = <130>;
 	bindings = <&kp>, <&kp>;
 	hold-trigger-key-positions = <KEYS_L KEYS_T>;
 	global-quick-tap;
