@@ -84,7 +84,6 @@
 #define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
 
 // Override nice_view_spi to use the correct CS pin
-//&nice_view_spi: &spi0 {
 &spi0 {
 	compatible = "nordic,nrf-spim";
 	sck-pin = <20>;
@@ -92,6 +91,7 @@
 	miso-pin = <25>;
 	cs-gpios = <&pro_micro 2 GPIO_ACTIVE_HIGH>; // "DATA" pin for TRRS
 };
+&nice_view_spi: &spi0;
 
 &mwh {
   time-to-max-speed-ms = <500>;                 /* <--- How long time until max speed is reached */
