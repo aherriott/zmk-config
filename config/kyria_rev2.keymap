@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/bt.h>
 
 #include "helper.h"
 
@@ -91,7 +92,7 @@
 	miso-pin = <25>;
 	cs-gpios = <&pro_micro 2 GPIO_ACTIVE_HIGH>; // "DATA" pin for TRRS
 };
-&nice_view_spi: &spi0;
+// &nice_view_spi: &spi0;
 
 &mwh {
   time-to-max-speed-ms = <500>;                 /* <--- How long time until max speed is reached */
@@ -321,10 +322,10 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		num_layer {
 			bindings = <
-	XXX	XXX			XXX			XXX			XXX			XXX						&kp MINUS	&kp N7	&kp N8	&kp N9	XXX		XXX
-	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&sk HYPER				&kp	DOT		&kp N4	&kp N5	&kp N6	&kp N0	XXX
-	XXX	SW_APP_3	SW_APP_2	SW_APP_1	SW_APP_0	XXX			THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
-																	THUMB_PASS
+	XXX	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_CLR				&kp MINUS	&kp N7	&kp N8	&kp N9	XXX		XXX
+	XXX	&sk LGUI		&sk LALT		&sk LSHIFT		&sk LCTRL		&sk HYPER				&kp	DOT		&kp N4	&kp N5	&kp N6	&kp N0	XXX
+	XXX	SW_APP_3		SW_APP_2		SW_APP_1		SW_APP_0		XXX			THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
+																					THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
