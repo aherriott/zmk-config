@@ -65,8 +65,8 @@
  * Helper Macros
  */
 
-# Below helpers are copied from urob's implementation. Ideally they'd live in a separate file for clarity,
-# but for now they need to live here so the layout-drawer can load it by the .keymap file alone.
+// Below helpers are copied from urob's implementation. Ideally they'd live in a separate file for clarity,
+// but for now they need to live here so the layout-drawer can load it by the .keymap file alone.
 
 #define ZMK_HELPER_STRINGIFY(x) #x
 
