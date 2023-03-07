@@ -9,7 +9,9 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/bt.h>
 
-#include "helper.h"
+/**
+ * Shorthand Macros
+*/
 
 #define DEFAULT		0
 #define QWERTY		1
@@ -37,8 +39,14 @@
 #define HRMRA &hrmrs RALT
 #define HRMRG &hrmrs RGUI
 
+// App switching
+#define SW_APP_0 &kp HYPER_M(N0)
+#define SW_APP_1 &kp HYPER_M(N1)
+#define SW_APP_2 &kp HYPER_M(N2)
+#define SW_APP_3 &kp HYPER_M(N3)
+
 /**
- * Key indices:
+ * Key indices shorthand:
  * 1-5		6-10
  * 13-17	18-22
  * 25-29	34-38
@@ -53,10 +61,50 @@
 #define KEYS_T	40 41 42 43 44	\
 				45 46 47 48 49
 
-#define SW_APP_0 &kp HYPER_M(N0)
-#define SW_APP_1 &kp HYPER_M(N1)
-#define SW_APP_2 &kp HYPER_M(N2)
-#define SW_APP_3 &kp HYPER_M(N3)
+/**
+ * Helper Macros
+ */
+
+# Below helpers are copied from urob's implementation. Ideally they'd live in a separate file for clarity,
+# but for now they need to live here so the layout-drawer can load it by the .keymap file alone.
+
+#define ZMK_HELPER_STRINGIFY(x) #x
+
+#define ZMK_BEHAVIOR_CORE_caps_word   compatible = "zmk,behavior-caps-word";  #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_hold_tap    compatible = "zmk,behavior-hold-tap";   #binding-cells = <2>
+#define ZMK_BEHAVIOR_CORE_key_repeat  compatible = "zmk,behavior-key-repeat"; #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_macro       compatible = "zmk,behavior-macro";      #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_mod_morph   compatible = "zmk,behavior-mod-morph";  #binding-cells = <0>
+#define ZMK_BEHAVIOR_CORE_sticky_key  compatible = "zmk,behavior-sticky-key"; #binding-cells = <1>
+#define ZMK_BEHAVIOR_CORE_tap_dance   compatible = "zmk,behavior-tap-dance";  #binding-cells = <0>
+
+#define ZMK_BEHAVIOR(name, type, ...) \
+    / { \
+        behaviors { \
+            name: name { \
+                label = ZMK_HELPER_STRINGIFY(ZB_ ## name); \
+                ZMK_BEHAVIOR_CORE_ ## type; \
+                __VA_ARGS__ \
+            }; \
+        }; \
+    };
+
+#define ZMK_MOD_SHIFT(name, base_key, shift_key) \
+    / { \
+        behaviors { \
+            name: name { \
+                compatible = "zmk,behavior-mod-morph"; \
+                label = ZMK_HELPER_STRINGIFY(ZMK_MOD_SHIFT_ ## name); \
+                #binding-cells = <0>; \
+                bindings = <&kp base_key>, <&kp shift_key>; \
+                mods = <(MOD_LSFT|MOD_RSFT)>; \
+            }; \
+        }; \
+    };
+
+/**
+ * Mouse
+ */
 
 // Mouse movement
 #define U_MOUSE_MOVE_MAX 1400                     /* <--- New max speed setting (default: 600) */
@@ -84,6 +132,14 @@
 #define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
 #define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
 
+&mwh {
+  time-to-max-speed-ms = <500>;                 /* <--- How long time until max speed is reached */
+};
+
+/**
+ * nice!view
+ */
+
 // Override nice_view_spi to use the correct CS pin
 &spi0 {
 	compatible = "nordic,nrf-spim";
@@ -94,9 +150,9 @@
 };
 // &nice_view_spi: &spi0;
 
-&mwh {
-  time-to-max-speed-ms = <500>;                 /* <--- How long time until max speed is reached */
-};
+/**
+ * Layer-tap & Mod-tap tweaks
+ */
 
 &lt {
 	quick-tap-ms = <250>;
@@ -110,7 +166,7 @@
 
 /**
  * Home row hold-taps
-*/
+ */
 
 /* left-hand HRMs */
 ZMK_BEHAVIOR(hrml, hold_tap, 
