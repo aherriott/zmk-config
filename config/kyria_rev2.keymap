@@ -105,6 +105,14 @@
 /**
  * Mouse
  */
+ 
+// Define dummy functions for the layout-drawer
+#ifndef MOVE_VERT
+	#define MOVE_VERT(X) XXX
+	#define MOVE_HOR(X) XXX
+	#define SCROLL_VERT(X) XXX
+	#define SCROLL_HOR(X) XXX
+#endif
 
 // Mouse movement
 #define U_MOUSE_MOVE_MAX 1400                     /* <--- New max speed setting (default: 600) */
