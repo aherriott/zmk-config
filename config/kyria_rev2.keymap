@@ -39,11 +39,14 @@
 #define HRMRA &hrmrs RALT
 #define HRMRG &hrmrs RGUI
 
-// App switching
+// App switching (use with jumpapp on ubuntu, etc)
 #define SW_APP_0 &kp HYPER_M(N0)
 #define SW_APP_1 &kp HYPER_M(N1)
 #define SW_APP_2 &kp HYPER_M(N2)
 #define SW_APP_3 &kp HYPER_M(N3)
+#define SW_APP_4 &kp HYPER_M(N4)
+#define SW_APP_5 &kp HYPER_M(N5)
+#define SW_APP_6 &kp HYPER_M(N6)
 
 /**
  * Key indices shorthand:
@@ -388,7 +391,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 			bindings = <
 	XXX	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_CLR				&kp MINUS	&kp N7	&kp N8	&kp N9	XXX		XXX
 	XXX	&sk LGUI		&sk LALT		&sk LSHIFT		&sk LCTRL		&sk HYPER				&kp	DOT		&kp N4	&kp N5	&kp N6	&kp N0	XXX
-	XXX	SW_APP_3		SW_APP_2		SW_APP_1		SW_APP_0		XXX			THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
+	XXX	SW_APP_5		SW_APP_4		SW_APP_3		SW_APP_2		SW_APP_1	THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
 																					THUMB_PASS
 			>;
 
