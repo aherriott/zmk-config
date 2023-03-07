@@ -105,25 +105,21 @@
 /**
  * Mouse
  */
- 
-// Define dummy functions for the layout-drawer
-#ifndef MOVE_VERT
-	#define MOVE_VERT(X) XXX
-	#define MOVE_HOR(X) XXX
-	#define SCROLL_VERT(X) XXX
-	#define SCROLL_HOR(X) XXX
-#endif
 
 // Mouse movement
 #define U_MOUSE_MOVE_MAX 1400                     /* <--- New max speed setting (default: 600) */
-#undef MOVE_UP
-#undef MOVE_DOWN
-#undef MOVE_LEFT
-#undef MOVE_RIGHT
-#define MOVE_UP MOVE_VERT(-U_MOUSE_MOVE_MAX)
-#define MOVE_DOWN MOVE_VERT(U_MOUSE_MOVE_MAX)
-#define MOVE_LEFT MOVE_HOR(-U_MOUSE_MOVE_MAX)
-#define MOVE_RIGHT MOVE_HOR(U_MOUSE_MOVE_MAX)
+
+// MOVE_UP should only not be defined if we are building from the keymap-drawer
+#ifdef MOVE_UP
+	#undef MOVE_UP
+	#undef MOVE_DOWN
+	#undef MOVE_LEFT
+	#undef MOVE_RIGHT
+	#define MOVE_UP MOVE_VERT(-U_MOUSE_MOVE_MAX)
+	#define MOVE_DOWN MOVE_VERT(U_MOUSE_MOVE_MAX)
+	#define MOVE_LEFT MOVE_HOR(-U_MOUSE_MOVE_MAX)
+	#define MOVE_RIGHT MOVE_HOR(U_MOUSE_MOVE_MAX)
+#endif
 
 &mmv {
 	time-to-max-speed-ms = <400>;             /* <--- How long time until max speed is reached (default: 500) */
@@ -131,14 +127,18 @@
 
 // Scroll
 #define U_MOUSE_SCROLL_MAX 80                    /* <--- New max speed setting (default: 10) */
-#undef SCROLL_UP
-#undef SCROLL_DOWN
-#undef SCROLL_LEFT
-#undef SCROLL_RIGHT
-#define SCROLL_UP SCROLL_VERT(U_MOUSE_SCROLL_MAX)
-#define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
-#define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
-#define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+
+// DCROLL_UP should only not be defined if we are building from the keymap-drawer
+#ifdef SCROLL_UP
+	#undef SCROLL_UP
+	#undef SCROLL_DOWN
+	#undef SCROLL_LEFT
+	#undef SCROLL_RIGHT
+	#define SCROLL_UP SCROLL_VERT(U_MOUSE_SCROLL_MAX)
+	#define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
+	#define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
+	#define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+#endif
 
 &mwh {
   time-to-max-speed-ms = <500>;                 /* <--- How long time until max speed is reached */
