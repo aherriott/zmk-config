@@ -329,7 +329,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 			bindings = <
 	XXX	&mwh SCROLL_LEFT	&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mwh SCROLL_RIGHT	XXX						XXX		XXX				XXX				XXX 			XXX				XXX
 	XXX	&kp LCTRL			&kp LSHIFT		&mkp RCLK			&mkp LCLK			&mkp MCLK				XXX		&mmv MOVE_LEFT	&mmv MOVE_DOWN	&mmv MOVE_UP	&mmv MOVE_RIGHT	XXX
-	XXX	&kp LGUI			&kp LALT    	XXX					XXX					XXX			THUMB_NONE	XXX		XXX				XXX				XXX				XXX
+	XXX	&kp LGUI			&kp LALT    	XXX					XXX					XXX			THUMB_NONE	XXX		XXX				XXX				XXX				XXX				XXX
 																								THUMB_PASS
 			>;
 
