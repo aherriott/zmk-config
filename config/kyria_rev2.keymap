@@ -49,6 +49,20 @@
 #define HYP_5 &kp HYPER_M(N5)
 #define HYP_6 &kp HYPER_M(N6)
 
+// Generic
+#define SAVE		&kp LC(S)
+#define FIND		&kp LC(F)
+#define CMMNT		&kp LC(FSLH)
+#define PASTE		&kp LC(V)
+#define UNDO		&kp LC(Z)
+#define REDO		&kp LC(Y)
+#define WORD_LEFT	&kp LC(LEFT)
+#define WORD_RIGHT  &kp LC(RIGHT)
+#define SEL_L_LEFT	&kp	LS(HOME)
+#define SEL_W_LEFT 	&kp LS(LC(LEFT))
+#define SEL_W_RIGHT &kp	LS(LC(RIGHT))
+#define SEL_L_RIGHT &kp LS(END)
+
 // VSCode
 #define HOME_FILE   &kp LC(HOME)
 #define END_FILE    &kp LC(END)
@@ -332,7 +346,7 @@ ZMK_BEHAVIOR(sel_line, macro,
 ZMK_BEHAVIOR(fold_reg, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
-	bindings = <&kp LC(K) &kp LC(0)>;
+	bindings = <&kp LC(K) &kp LC(N0)>;
 )
 ZMK_BEHAVIOR(unfold_reg, macro,
 	wait-ms = <100>;
@@ -463,9 +477,9 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		nav {
 			bindings = <
-	XXX &kp HOME	&back_forward	&kp LC(F)	&kp END		&kp PSCRN		       		&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
-	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LC(S)					&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
-	XXX	&kp LC(Z)	&kp LC(Y)		&copy_cut	&kp LC(V)	&kp LC(FSLH)	THUMB_NONE 	&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
+	XXX &kp HOME	&back_forward	&find_rep	&kp END		&kp PSCRN		       		&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
+	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	SAVE						&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
+	XXX	UNDO		REDO			&copy_cut	PASTE		CMMNT	THUMB_NONE 	&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
 		&bootloader															THUMB_PASS_M1
 		>;
 
@@ -474,7 +488,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		num {
 			bindings = <
-	XXX	SEL_L_LEFT	SEL_W_LEFT 	SEL_W_RIGHT	SEL_L_RIGHT	    &sel_line					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
+	XXX	SEL_L_LEFT	SEL_W_LEFT 	SEL_W_RIGHT	SEL_L_RIGHT	    SEL_LINE					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
 	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL		&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
 	XXX	HYP_4		HYP_3		HYP_2		HYP_1			HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&kp FSLH	XXX
 												THUMB_PASS
