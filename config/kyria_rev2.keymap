@@ -165,7 +165,7 @@
 };
 
 // Scroll
-#define U_MOUSE_SCROLL_MAX 80                    /* <--- New max speed setting (default: 10) */
+#define U_MOUSE_SCROLL_MAX 60                    /* <--- New max speed setting (default: 10) */
 
 // SCROLL_UP should only not be defined if we are building from the keymap-drawer
 #ifdef SCROLL_UP
@@ -299,43 +299,43 @@ ZMK_BEHAVIOR(end_dot, macro,
 )
 #define SCRL_UP	&scrl_up
 ZMK_BEHAVIOR(scrl_up, macro,
-	wait-ms = <100>;
+	wait-ms = <30>;
 	tap-ms = <40>;
 	bindings = <&kp UP &kp UP &kp UP &kp UP &kp UP>;
 )
 #define SCRL_DOWN &scrl_down
 ZMK_BEHAVIOR(scrl_down, macro,
-	wait-ms = <100>;
+	wait-ms = <30>;
 	tap-ms = <40>;
 	bindings = <&kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
 )
 #define DBL_PIPE &dbl_pipe
 ZMK_BEHAVIOR(dbl_pipe, macro,
-	wait-ms = <100>;
+	wait-ms = <50>;
 	tap-ms = <40>;
 	bindings = <&kp PIPE &kp PIPE>;
 )
 #define DBL_EQL &dbl_eql
 ZMK_BEHAVIOR(dbl_eql, macro,
-	wait-ms = <100>;
+	wait-ms = <50>;
 	tap-ms = <40>;
 	bindings = <&kp EQUAL &kp EQUAL>;
 )
 #define DBL_COLN &dbl_coln
 ZMK_BEHAVIOR(dbl_coln, macro,
-	wait-ms = <100>;
+	wait-ms = <50>;
 	tap-ms = <40>;
 	bindings = <&kp COLON &kp COLON>;
 )
 #define DDOT_SLSH &ddot_slsh
 ZMK_BEHAVIOR(ddot_slsh, macro,
-	wait-ms = <100>;
+	wait-ms = <50>;
 	tap-ms = <40>;
 	bindings = <&kp DOT &kp DOT &kp FSLH>;
 )
 #define SEL_LINE 	&sel_line
 ZMK_BEHAVIOR(sel_line, macro,
-	wait-ms = <100>;
+	wait-ms = <50>;
 	tap-ms = <40>;
 	bindings = <&kp HOME &kp LS(END)>;
 )
@@ -430,10 +430,10 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		mouse {
 			bindings = <
-	XXX	&mwh SCROLL_LEFT	&kp LALT		&kp LSHIFT			&mwh SCROLL_RIGHT	XXX						XXX			XXX				XXX				XXX 			XXX				XXX
-	XXX	&kp LCTRL			&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mkp LCLK			&mkp MCLK				&bt BT_CLR	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	XXX
-	XXX	XXX					XXX				XXX					&mkp RCLK			XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
-																								THUMB_PASS
+	XXX	&mwh SCROLL_LEFT	XXX				XXX			&mwh SCROLL_RIGHT	XXX						XXX			XXX				XXX				XXX 			XXX				XXX
+	XXX	&mwh SCROLL_DOWN	&mwh SCROLL_UP	&mkp RCLK	&mkp LCLK			&mkp MCLK				&bt BT_CLR	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	XXX
+	XXX &kp LCTRL			&kp LALT		&kp LSHIFT	&kp LGUI			XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
+																						THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
