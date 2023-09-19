@@ -489,9 +489,9 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		num {
 			bindings = <
-	XXX	SEL_L_LEFT	SEL_W_LEFT 	SEL_W_RIGHT	SEL_L_RIGHT	    SEL_LINE					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
-	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL		&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
-	XXX	HYP_4		HYP_3		HYP_2		HYP_1			HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&fslh_bslh	XXX
+	XXX	WORD_LEFT 	SCRL_UP		SCRL_DOWN	WORD_RIGHT	SEL_LINE					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
+	XXX	HYP_4		HYP_3		HYP_2		HYP_1		HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&fslh_bslh	XXX
 																			THUMB_PASS
 			>;
 
@@ -500,7 +500,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		vscode {
 			bindings = <
-	XXX	HOME_FILE	SCRL_UP		SCRL_DOWN	END_FILE	FOLD_REG					PALLATE		WORD_LEFT	MV_L_DOWN	MV_L_UP		WORD_RIGHT	XXX
+	XXX	SEL_W_LEFT	SEL_L_LEFT 	SEL_L_RIGHT	SEL_W_RIGHT	FOLD_REG					PALLATE		HOME_FILE	MV_L_DOWN	MV_L_UP		END_FILE	XXX
 	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&key_repeat					ZEN_MODE	FILE_LEFT	TOG_TERM	FTREE_TOG	FILE_RIGHT	XXX
 	XXX	BOX_LEFT	BOX_UP		BOX_DOWN	BOX_RIGHT	UNFOLD_REG     THUMB_NONE 	TOG_WRDW	RVL_EXP		CUR_DOWN	CUR_UP		CUR_UNDO	XXX
 												THUMB_PASS
