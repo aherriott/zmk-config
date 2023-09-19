@@ -291,54 +291,55 @@ ZMK_MOD_SHIFT(fslh_bslh, FSLH, BSLH)
  * Macros
 */
 
+#define END_DOT	&end_dot
 ZMK_BEHAVIOR(end_dot, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
 )
-ZMK_BEHAVIOR(end_qmark, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
-	bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
-)
+#define SCRL_UP	&scrl_up
 ZMK_BEHAVIOR(scrl_up, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp UP &kp UP &kp UP &kp UP &kp UP>;
 )
+#define SCRL_DOWN &scrl_down
 ZMK_BEHAVIOR(scrl_down, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
 )
+#define DBL_PIPE &dbl_pipe
 ZMK_BEHAVIOR(dbl_pipe, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp PIPE &kp PIPE>;
 )
+#define DBL_EQL &dbl_eql
 ZMK_BEHAVIOR(dbl_eql, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp EQUAL &kp EQUAL>;
 )
+#define DBL_COLN &dbl_coln
 ZMK_BEHAVIOR(dbl_coln, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp COLON &kp COLON>;
 )
+#define DDOT_SLSH &ddot_slsh
 ZMK_BEHAVIOR(ddot_slsh, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp DOT &kp DOT &kp FSLH>;
 )
+#define SEL_LINE 	&sel_line
 ZMK_BEHAVIOR(sel_line, macro,
 	wait-ms = <100>;
 	tap-ms = <40>;
 	bindings = <&kp HOME &kp LS(END)>;
 )
 // VSCode Macros
-#define SCRL_UP &scrl_up
-#define SCRL_DOWN &scrl_down
 #define FOLD_REG &fold_reg
 #define UNFOLD_REG &unfold_reg
 #define ZEN_MODE &zen_mode
@@ -453,9 +454,9 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		sym {
 			bindings = <
-	XXX	&kp PIPE	&kp PLUS	&kp AT			&kp LBRC	&kp RBRC               	&kp CARET	&kp PRCNT	&kp DLLR	&caps_word  XXX			XXX
+	XXX	&kp PIPE	&kp PLUS	&kp AT			&kp LBRC	&kp RBRC               	&kp CARET	&kp PRCNT	&kp DLLR	&caps_word  DBL_COLN	XXX
 	XXX	HRMLG AMPS	HRMLA MINUS	HRMLSS EQUAL	HRMLC LPAR	&kp RPAR				&kp TILDE	HRMRC SQT	HRMRSS DQT	HRMRA UNDER	HRMRG HASH	XXX
-	XXX	XXX			&kp STAR 	XXX				&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp GT		&end_dot	XXX			XXX
+	XXX	DBL_PIPE	&kp STAR 	DBL_EQL			&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp GT		END_DOT		DDOT_SLSH	XXX
 																		THUMB_PASS_M1												&bootloader
 			>;
 
@@ -491,7 +492,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 	XXX	SEL_L_LEFT	SEL_W_LEFT 	SEL_W_RIGHT	SEL_L_RIGHT	    SEL_LINE					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
 	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL		&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
 	XXX	HYP_4		HYP_3		HYP_2		HYP_1			HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&fslh_bslh	XXX
-												THUMB_PASS
+																			THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
