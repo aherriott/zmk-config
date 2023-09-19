@@ -19,6 +19,7 @@
 #define SYM			3
 #define NAV			4
 #define NUM			5
+#define VSCODE		6
 
 #define THUMB_NONE 		&none &none &none &none
 #define XXX 			&none
@@ -40,13 +41,34 @@
 #define HRMRG &hrmrs RGUI
 
 // App switching (use with jumpapp on ubuntu, etc)
-#define SW_APP_0 &kp HYPER_M(N0)
-#define SW_APP_1 &kp HYPER_M(N1)
-#define SW_APP_2 &kp HYPER_M(N2)
-#define SW_APP_3 &kp HYPER_M(N3)
-#define SW_APP_4 &kp HYPER_M(N4)
-#define SW_APP_5 &kp HYPER_M(N5)
-#define SW_APP_6 &kp HYPER_M(N6)
+#define HYP_0 &kp HYPER_M(N0)
+#define HYP_1 &kp HYPER_M(N1)
+#define HYP_2 &kp HYPER_M(N2)
+#define HYP_3 &kp HYPER_M(N3)
+#define HYP_4 &kp HYPER_M(N4)
+#define HYP_5 &kp HYPER_M(N5)
+#define HYP_6 &kp HYPER_M(N6)
+
+// VSCode
+#define HOME_FILE   &kp LC(HOME)
+#define END_FILE    &kp LC(END)
+#define PALLATE     &kp LC(LS(P))
+#define MV_L_DOWN   &kp LA(DOWN)
+#define MV_L_UP     &kp LA(UP)
+#define TOG_TERM    &kp LC(GRAVE)
+#define NEW_TERM    &kp LC(LS(GRAVE))
+#define FTREE_TOG   &kp LC(B)
+#define FILE_LEFT   &kp LC(PG_UP)
+#define FILE_RIGHT  &kp LC(PG_DN)
+#define BOX_LEFT    &kp LC(LS(LA(LEFT)))
+#define BOX_UP      &kp LC(LS(LA(UP)))
+#define BOX_DOWN    &kp LC(LS(LA(DOWN)))
+#define BOX_RIGHT   &kp LC(LS(LA(RIGHT)))
+#define TOG_WRDW    &kp LA(Z)
+#define SEL_ALL_OC  &kp LC(LS(L))
+#define CUR_DOWN    &kp LC(LA(UP))
+#define CUR_UP      &kp LC(LA(DOWN))
+#define CUR_UNDO    &kp LC(U)
 
 /**
  * Key indices shorthand:
@@ -237,6 +259,12 @@ ZMK_BEHAVIOR(back_forward, tap_dance,
 	bindings = <&kp LA(LEFT)>, <&kp LA(RIGHT)>;
 )
 
+/* Tap find, double tap replace */
+ZMK_BEHAVIOR(find_rep, tap_dance,
+	tapping-term-ms = <250>;
+	bindings = <&kp LC(F)>, <&kp LC(H)>;
+)
+
 /**
  * Custom shifted keys
  */
@@ -259,6 +287,68 @@ ZMK_BEHAVIOR(end_qmark, macro,
 	tap-ms = <40>;
 	bindings = <&kp QMARK &kp SPACE &sk LSHIFT>;
 )
+ZMK_BEHAVIOR(scrl_up, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp UP &kp UP &kp UP &kp UP &kp UP>;
+)
+ZMK_BEHAVIOR(scrl_down, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
+)
+ZMK_BEHAVIOR(dbl_pipe, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp PIPE &kp PIPE>;
+)
+ZMK_BEHAVIOR(dbl_eql, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp EQUAL &kp EQUAL>;
+)
+ZMK_BEHAVIOR(dbl_coln, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp COLON &kp COLON>;
+)
+ZMK_BEHAVIOR(ddot_slsh, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp DOT &kp DOT &kp FSLH>;
+)
+ZMK_BEHAVIOR(sel_line, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp HOME &kp LS(END)>;
+)
+// VSCode Macros
+#define SCRL_UP &scrl_up
+#define SCRL_DOWN &scrl_down
+#define FOLD_REG &fold_reg
+#define UNFOLD_REG &unfold_reg
+#define ZEN_MODE &zen_mode
+#define RVL_EXP &rvl_exp
+ZMK_BEHAVIOR(fold_reg, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp LC(K) &kp LC(0)>;
+)
+ZMK_BEHAVIOR(unfold_reg, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp LC(K) &kp LC(J)>;
+)
+ZMK_BEHAVIOR(zen_mode, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp LC(K) &kp Z>;
+)
+ZMK_BEHAVIOR(rvl_exp, macro,
+	wait-ms = <100>;
+	tap-ms = <40>;
+	bindings = <&kp LC(K) &kp R>;
+)
 
 /**
  * Combos
@@ -275,26 +365,21 @@ ZMK_BEHAVIOR(end_qmark, macro,
         compatible = "zmk,combos";
         combo_mouse_enter {
             timeout-ms = <50>;
-            key-positions = <2 3 4>; /* W F P */
+            key-positions = <3 4>; /* F P */
             bindings = <&tog MOUSE>;
 			layers = <DEFAULT>;
         };
 		combo_mouse_enter_do_nothing {
             timeout-ms = <50>;
-            key-positions = <2 3 4>; /* W F P */
+            key-positions = <3 4>; /* F P */
             bindings = <&none>;
 			layers = <MOUSE>;
         };
 		combo_exit_all {
 			timeout-ms = <50>;
-            key-positions = <7 8 9>; /* L U Y */
+            key-positions = <7 8>; /* L U */
             bindings = <&to DEFAULT>;
 		};
-		combo_caps_word {
-            timeout-ms = <50>;
-            key-positions = <7 8>; /* L U */
-            bindings = <&caps_word>;
-        };
     };
 };
 
@@ -311,7 +396,7 @@ ZMK_BEHAVIOR(end_qmark, macro,
 	XXX	&kp Q   	&kp W   	&kp F   &kp P   		&kp B                	&kp J			&kp L			&kp U           &kp Y      	&kp SEMI	XXX
 	XXX	HRMLG A		HRMLA R		HRMLS S	HRMLC T			&kp G                   &kp M       	HRMRC N			HRMRS E  		HRMRA I		HRMRG O		XXX
 	XXX	&kp Z   	&kp X   	&kp C   &kp D			&kp V		THUMB_NONE	&kp K       	&kp H   		&comma_qmark	&dot_excl	&fslh_bslh	XXX
-		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&lt MOUSE TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
+		&tog QWERTY	&key_repeat	&kp DEL	&lt NAV BSPC	&lt NUM RET            	&lt VSCODE TAB 	&lt SYM SPACE	&kp ESC        	&key_repeat	&tog QWERTY
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -330,9 +415,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		mouse {
 			bindings = <
-	XXX	&mwh SCROLL_LEFT	&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mwh SCROLL_RIGHT	XXX						XXX		XXX				XXX				XXX 			XXX				XXX
-	XXX	&kp LCTRL			&kp LSHIFT		&mkp RCLK			&mkp LCLK			&mkp MCLK				XXX		&mmv MOVE_LEFT	&mmv MOVE_DOWN	&mmv MOVE_UP	&mmv MOVE_RIGHT	XXX
-	XXX	&kp LGUI			&kp LALT    	XXX					XXX					XXX			THUMB_NONE	XXX		XXX				XXX				XXX				XXX				XXX
+	XXX	&mwh SCROLL_LEFT	&kp LALT		&kp LSHIFT			&mwh SCROLL_RIGHT	XXX						XXX			XXX				XXX				XXX 			XXX				XXX
+	XXX	&kp LCTRL			&mwh SCROLL_UP	&mwh SCROLL_DOWN	&mkp LCLK			&mkp MCLK				&bt BT_CLR	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	XXX
+	XXX	XXX					XXX				XXX					&mkp RCLK			XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
 																								THUMB_PASS
 			>;
 
@@ -354,9 +439,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		sym {
 			bindings = <
-	XXX	XXX			&kp AMPS	&kp PLUS		&kp LBRC	&kp RBRC               	&kp CARET	&kp GT		&kp DLLR	&caps_word  XXX			XXX
-	XXX	HRMLG EQUAL	HRMLA UNDER	HRMLSS MINUS	HRMLC LPAR	&kp RPAR				&kp TILDE	HRMRC SQT	HRMRSS DQT	HRMRA HASH	HRMRG AT	XXX
-	XXX	XXX			&kp PIPE 	&kp STAR		&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp PRCNT	&end_dot	XXX			XXX
+	XXX	&kp PIPE	&kp PLUS	&kp AT			&kp LBRC	&kp RBRC               	&kp CARET	&kp PRCNT	&kp DLLR	&caps_word  XXX			XXX
+	XXX	HRMLG AMPS	HRMLA MINUS	HRMLSS EQUAL	HRMLC LPAR	&kp RPAR				&kp TILDE	HRMRC SQT	HRMRSS DQT	HRMRA UNDER	HRMRG HASH	XXX
+	XXX	XXX			&kp STAR 	XXX				&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp GT		&end_dot	XXX			XXX
 																		THUMB_PASS_M1												&bootloader
 			>;
 
@@ -378,9 +463,9 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		nav {
 			bindings = <
-	XXX &kp HOME	&back_forward	&kp LC(F)	&kp END		&kp PSCRN		       		XXX		&kp F7	&kp F8	&kp F9	&kp F10	XXX
-	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LC(S)					XXX		&kp F4	&kp F5	&kp F6	&kp F11	XXX
-	XXX	&kp LC(Z)	&kp LC(Y)		&copy_cut	&kp LC(V)	&kp LC(FSLH)	THUMB_NONE 	XXX		&kp F1	&kp F2	&kp F3	&kp F12	XXX
+	XXX &kp HOME	&back_forward	&kp LC(F)	&kp END		&kp PSCRN		       		&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
+	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	&kp LC(S)					&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
+	XXX	&kp LC(Z)	&kp LC(Y)		&copy_cut	&kp LC(V)	&kp LC(FSLH)	THUMB_NONE 	&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
 		&bootloader															THUMB_PASS_M1
 		>;
 
@@ -389,10 +474,21 @@ ZMK_BEHAVIOR(end_qmark, macro,
 
 		num {
 			bindings = <
-	XXX	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_CLR				&kp MINUS	&kp N7	&kp N8	&kp N9	XXX		XXX
-	XXX	&sk LGUI		&sk LALT		&sk LSHIFT		&sk LCTRL		&sk HYPER				&kp	DOT		&kp N4	&kp N5	&kp N6	&kp N0	XXX
-	XXX	SW_APP_5		SW_APP_4		SW_APP_3		SW_APP_2		SW_APP_1	THUMB_NONE 	&kp COMMA	&kp N1	&kp N2	&kp N3	XXX		XXX
-																					THUMB_PASS
+	XXX	SEL_L_LEFT	SEL_W_LEFT 	SEL_W_RIGHT	SEL_L_RIGHT	    &sel_line					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL		&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
+	XXX	HYP_4		HYP_3		HYP_2		HYP_1			HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&kp FSLH	XXX
+												THUMB_PASS
+			>;
+
+			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
+		};
+
+		vscode {
+			bindings = <
+	XXX	HOME_FILE	SCRL_UP		SCRL_DOWN	END_FILE	FOLD_REG					PALLATE		WORD_LEFT	MV_L_DOWN	MV_L_UP		WORD_RIGHT	XXX
+	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&key_repeat					ZEN_MODE	FILE_LEFT	TOG_TERM	FTREE_TOG	FILE_RIGHT	XXX
+	XXX	BOX_LEFT	BOX_UP		BOX_DOWN	BOX_RIGHT	UNFOLD_REG     THUMB_NONE 	TOG_WRDW	RVL_EXP		CUR_DOWN	CUR_UP		CUR_UNDO	XXX
+												THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
