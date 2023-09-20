@@ -165,7 +165,7 @@
 };
 
 // Scroll
-#define U_MOUSE_SCROLL_MAX 60                    /* <--- New max speed setting (default: 10) */
+#define U_MOUSE_SCROLL_MAX 40                    /* <--- New max speed setting (default: 10) */
 
 // SCROLL_UP should only not be defined if we are building from the keymap-drawer
 #ifdef SCROLL_UP
