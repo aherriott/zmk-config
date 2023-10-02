@@ -23,8 +23,7 @@
 
 #define THUMB_NONE 		&none &none &none &none
 #define XXX 			&none
-#define THUMB_PASS		&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-#define THUMB_PASS_M1	&trans &trans &trans &trans &trans &trans &trans &trans &trans
+#define THUMB_PASS		&trans &trans &trans &trans &trans &trans &trans &trans &trans
 
 #define HYPER_M(X) LG(LA(LS(LC(X))))
 #define HYPER LG(LA(LS(LCTRL)))
@@ -165,7 +164,7 @@
 };
 
 // Scroll
-#define U_MOUSE_SCROLL_MAX 40                    /* <--- New max speed setting (default: 10) */
+#define U_MOUSE_SCROLL_MAX 20                    /* <--- New max speed setting (default: 10) */
 
 // SCROLL_UP should only not be defined if we are building from the keymap-drawer
 #ifdef SCROLL_UP
@@ -291,52 +290,54 @@ ZMK_MOD_SHIFT(fslh_bslh, FSLH, BSLH)
  * Macros
 */
 
+#define MACRO_WAIT_MS 20
+#define MACRO_TAP_MS 20
 #define END_DOT	&end_dot
 ZMK_BEHAVIOR(end_dot, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp DOT &kp SPACE &sk LSHIFT>;
 )
 #define SCRL_UP	&scrl_up
 ZMK_BEHAVIOR(scrl_up, macro,
-	wait-ms = <30>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp UP &kp UP &kp UP &kp UP &kp UP>;
 )
 #define SCRL_DOWN &scrl_down
 ZMK_BEHAVIOR(scrl_down, macro,
-	wait-ms = <30>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
 )
 #define DBL_PIPE &dbl_pipe
 ZMK_BEHAVIOR(dbl_pipe, macro,
-	wait-ms = <50>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp PIPE &kp PIPE>;
 )
 #define DBL_EQL &dbl_eql
 ZMK_BEHAVIOR(dbl_eql, macro,
-	wait-ms = <50>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp EQUAL &kp EQUAL>;
 )
 #define DBL_COLN &dbl_coln
 ZMK_BEHAVIOR(dbl_coln, macro,
-	wait-ms = <50>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp COLON &kp COLON>;
 )
 #define DDOT_SLSH &ddot_slsh
 ZMK_BEHAVIOR(ddot_slsh, macro,
-	wait-ms = <50>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp DOT &kp DOT &kp FSLH>;
 )
 #define SEL_LINE 	&sel_line
 ZMK_BEHAVIOR(sel_line, macro,
-	wait-ms = <50>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp HOME &kp LS(END)>;
 )
 // VSCode Macros
@@ -345,23 +346,23 @@ ZMK_BEHAVIOR(sel_line, macro,
 #define ZEN_MODE &zen_mode
 #define RVL_EXP &rvl_exp
 ZMK_BEHAVIOR(fold_reg, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp LC(K) &kp LC(N0)>;
 )
 ZMK_BEHAVIOR(unfold_reg, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp LC(K) &kp LC(J)>;
 )
 ZMK_BEHAVIOR(zen_mode, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp LC(K) &kp Z>;
 )
 ZMK_BEHAVIOR(rvl_exp, macro,
-	wait-ms = <100>;
-	tap-ms = <40>;
+	wait-ms = <MACRO_WAIT_MS>;
+	tap-ms = <MACRO_TAP_MS>;
 	bindings = <&kp LC(K) &kp R>;
 )
 
@@ -430,9 +431,9 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		mouse {
 			bindings = <
-	XXX	&mwh SCROLL_LEFT	XXX				XXX			&mwh SCROLL_RIGHT	XXX						XXX			XXX				XXX				XXX 			XXX				XXX
+	XXX	&kp LCTRL			&kp LALT		&kp LSHIFT	&kp LGUI			XXX						XXX			XXX				XXX				XXX 			XXX				XXX
 	XXX	&mwh SCROLL_DOWN	&mwh SCROLL_UP	&mkp RCLK	&mkp LCLK			&mkp MCLK				&bt BT_CLR	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	XXX
-	XXX &kp LCTRL			&kp LALT		&kp LSHIFT	&kp LGUI			XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
+	XXX &mwh SCROLL_LEFT	XXX				XXX			&mwh SCROLL_RIGHT	XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
 																						THUMB_PASS
 			>;
 
@@ -457,7 +458,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 	XXX	&kp PIPE	&kp PLUS	&kp AT			&kp LBRC	&kp RBRC               	&kp CARET	&kp PRCNT	&kp DLLR	&caps_word  DBL_COLN	XXX
 	XXX	HRMLG AMPS	HRMLA MINUS	HRMLSS EQUAL	HRMLC LPAR	&kp RPAR				&kp TILDE	HRMRC SQT	HRMRSS DQT	HRMRA UNDER	HRMRG HASH	XXX
 	XXX	DBL_PIPE	&kp STAR 	DBL_EQL			&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp GT		END_DOT		DDOT_SLSH	XXX
-																		THUMB_PASS_M1												&bootloader
+																		THUMB_PASS	&sys_reset
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -478,10 +479,10 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		nav {
 			bindings = <
-	XXX &kp HOME	&back_forward	&find_rep	&kp END		&kp PSCRN	       		&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
-	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	S_SAVE					&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
-	XXX	S_UNDO		S_REDO			&copy_cut	S_PASTE		S_CMMNT		THUMB_NONE 	&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
-		&bootloader															THUMB_PASS_M1
+	XXX &kp HOME	&back_forward	&find_rep	&kp END		&kp PSCRN	       			&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
+	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	S_SAVE						&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
+	XXX	S_UNDO		S_REDO			&copy_cut	S_PASTE		S_CMMNT		THUMB_NONE 		&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
+															&sys_reset	THUMB_PASS
 		>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -492,7 +493,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 	XXX	WORD_LEFT 	SCRL_UP		SCRL_DOWN	WORD_RIGHT	SEL_LINE					&kp PRCNT	&kp N7	&kp N8	&kp N9	&kp COLON	XXX
 	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&key_repeat					&kp DOT		&kp N4	&kp N5	&kp N6	&kp N0		XXX
 	XXX	HYP_4		HYP_3		HYP_2		HYP_1		HYP_0			THUMB_NONE	&kp COMMA	&kp N1	&kp N2	&kp N3	&fslh_bslh	XXX
-																			THUMB_PASS
+														&bootloader		THUMB_PASS
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -502,8 +503,8 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 			bindings = <
 	XXX	SEL_W_LEFT	SEL_L_LEFT 	SEL_L_RIGHT	SEL_W_RIGHT	FOLD_REG					PALLATE		HOME_FILE	MV_L_DOWN	MV_L_UP		END_FILE	XXX
 	XXX	&sk LGUI	&sk LALT	&sk LSHIFT	&sk LCTRL	&key_repeat					ZEN_MODE	FILE_LEFT	TOG_TERM	FTREE_TOG	FILE_RIGHT	XXX
-	XXX	BOX_LEFT	BOX_UP		BOX_DOWN	BOX_RIGHT	UNFOLD_REG     THUMB_NONE 	TOG_WRDW	RVL_EXP		CUR_DOWN	CUR_UP		CUR_UNDO	XXX
-												THUMB_PASS
+	XXX	BOX_LEFT	BOX_UP		BOX_DOWN	BOX_RIGHT	UNFOLD_REG     	THUMB_NONE 	TOG_WRDW	RVL_EXP		CUR_DOWN	CUR_UP		CUR_UNDO	XXX
+																		THUMB_PASS	&bootloader
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
