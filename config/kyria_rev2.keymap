@@ -458,7 +458,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 	XXX	&kp PIPE	&kp PLUS	&kp AT			&kp LBRC	&kp RBRC               	&kp CARET	&kp PRCNT	&kp DLLR	&caps_word  DBL_COLN	XXX
 	XXX	HRMLG AMPS	HRMLA MINUS	HRMLSS EQUAL	HRMLC LPAR	&kp RPAR				&kp TILDE	HRMRC SQT	HRMRSS DQT	HRMRA UNDER	HRMRG HASH	XXX
 	XXX	DBL_PIPE	&kp STAR 	DBL_EQL			&kp LBKT	&kp RBKT	THUMB_NONE	&kp GRAVE	&kp LT		&kp GT		END_DOT		DDOT_SLSH	XXX
-																		THUMB_PASS	&sys_reset
+																		THUMB_PASS	&reset
 			>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
@@ -482,7 +482,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 	XXX &kp HOME	&back_forward	&find_rep	&kp END		&kp PSCRN	       			&kp F10	&kp F7	&kp F8	&kp F9	&kp F13	XXX
 	XXX	&kp LEFT	&kp UP			&kp DOWN	&kp RIGHT	S_SAVE						&kp F11	&kp F4	&kp F5	&kp F6	&kp F14	XXX
 	XXX	S_UNDO		S_REDO			&copy_cut	S_PASTE		S_CMMNT		THUMB_NONE 		&kp F12	&kp F1	&kp F2	&kp F3	&kp F15	XXX
-															&sys_reset	THUMB_PASS
+															&reset		THUMB_PASS
 		>;
 
 			sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
