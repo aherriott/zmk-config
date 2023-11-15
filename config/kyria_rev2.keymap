@@ -431,9 +431,9 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 
 		mouse {
 			bindings = <
-	XXX	&kp LCTRL			&kp LALT		&kp LSHIFT	&kp LGUI			XXX						XXX			XXX				XXX				XXX 			XXX				XXX
+	XXX &mwh SCROLL_LEFT	XXX				XXX			&mwh SCROLL_RIGHT	XXX						XXX			XXX				XXX				XXX 			XXX				XXX
 	XXX	&mwh SCROLL_DOWN	&mwh SCROLL_UP	&mkp RCLK	&mkp LCLK			&mkp MCLK				&bt BT_CLR	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	XXX
-	XXX &mwh SCROLL_LEFT	XXX				XXX			&mwh SCROLL_RIGHT	XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
+	XXX &kp LCTRL			&kp LALT		&kp LSHIFT	&kp LGUI			XXX			THUMB_NONE	XXX			XXX				XXX				XXX				XXX				XXX
 																						THUMB_PASS
 			>;
 
