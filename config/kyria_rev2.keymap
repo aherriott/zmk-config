@@ -421,7 +421,7 @@ ZMK_BEHAVIOR(rvl_exp, macro,
 		qwerty {
 			bindings = <
 	XXX	&kp Q	&kp W  	&kp E  	&kp R  	&kp T                 &kp Y  	&kp U	&kp I     	&kp O   &kp P    	XXX  
-	XXX	HRMLG A	HRMLA S	HRMLS R	HRMLC F	&kp G                 &kp H  	HRMRC J	HRMRS K		HRMRA L	HRMRG SEMI	XXX  
+	XXX	HRMLG A	HRMLA S	HRMLS D	HRMLC F	&kp G                 &kp H  	HRMRC J	HRMRS K		HRMRA L	HRMRG SEMI	XXX  
 	XXX	&kp Z 	&kp X  	&kp C	&kp V  	&kp B   THUMB_NONE    &kp N  	&kp M  	&kp COMMA 	&kp DOT &kp FSLH    XXX  
 												THUMB_PASS
 			>;
